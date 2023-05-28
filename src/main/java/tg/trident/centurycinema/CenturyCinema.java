@@ -4,6 +4,8 @@
 
 package tg.trident.centurycinema;
 
+import javax.swing.JFrame;
+import tg.trident.centurycinema.admin.AdminPage;
 /**
  *
  * @author dagim
@@ -11,6 +13,9 @@ package tg.trident.centurycinema;
 public class CenturyCinema {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        JFrame frame = new AdminPage();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 550);
+        frame.setVisible(true);
     }
 }
