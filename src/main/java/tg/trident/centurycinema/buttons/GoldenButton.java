@@ -12,7 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-public class RoundedButton extends JButton {
+public class GoldenButton extends JButton {
     private boolean over;
     private Color backgroundColor;
     private Color hoverColor;
@@ -20,7 +20,7 @@ public class RoundedButton extends JButton {
     private Color textColor;
     private float alpha = 1.0f;
 
-    public RoundedButton() {
+    public GoldenButton() {
         setOpaque(false);
         setContentAreaFilled(false);
         setFocusPainted(false);
