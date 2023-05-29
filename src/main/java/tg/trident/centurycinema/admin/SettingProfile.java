@@ -28,12 +28,12 @@ public class SettingProfile extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        goldenButton1 = new tg.trident.centurycinema.buttons.GoldenButton();
+        firstName = new javax.swing.JTextField();
+        lastName = new javax.swing.JTextField();
+        branch = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        userName = new javax.swing.JTextField();
+        saveChanges = new tg.trident.centurycinema.buttons.GoldenButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,38 +49,43 @@ public class SettingProfile extends javax.swing.JPanel {
         setBackground(new java.awt.Color(37, 37, 37));
         setPreferredSize(new java.awt.Dimension(315, 38));
 
-        jTextField1.setBackground(new java.awt.Color(58, 58, 58));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(120, 120, 120));
-        jTextField1.setText("jTextField1");
-        jTextField1.setPreferredSize(new java.awt.Dimension(140, 38));
+        firstName.setBackground(new java.awt.Color(58, 58, 58));
+        firstName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        firstName.setForeground(new java.awt.Color(120, 120, 120));
+        firstName.setText("Eg: Mohammed");
+        firstName.setPreferredSize(new java.awt.Dimension(140, 38));
 
-        jTextField2.setBackground(new java.awt.Color(58, 58, 58));
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(120, 120, 120));
-        jTextField2.setText("jTextField2");
-        jTextField2.setPreferredSize(new java.awt.Dimension(140, 38));
+        lastName.setBackground(new java.awt.Color(58, 58, 58));
+        lastName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lastName.setForeground(new java.awt.Color(120, 120, 120));
+        lastName.setText("Eg: Ibrahim");
+        lastName.setPreferredSize(new java.awt.Dimension(140, 38));
 
-        jTextField3.setBackground(new java.awt.Color(58, 58, 58));
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(120, 120, 120));
-        jTextField3.setText("jTextField3");
-        jTextField3.setPreferredSize(new java.awt.Dimension(315, 38));
+        branch.setBackground(new java.awt.Color(58, 58, 58));
+        branch.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        branch.setForeground(new java.awt.Color(120, 120, 120));
+        branch.setText("Eg: Gofa Branch");
+        branch.setPreferredSize(new java.awt.Dimension(315, 38));
 
-        jTextField4.setBackground(new java.awt.Color(58, 58, 58));
-        jTextField4.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(120, 120, 120));
-        jTextField4.setText("jTextField3");
-        jTextField4.setPreferredSize(new java.awt.Dimension(315, 38));
+        email.setBackground(new java.awt.Color(58, 58, 58));
+        email.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        email.setForeground(new java.awt.Color(120, 120, 120));
+        email.setText("Eg: mohammedibrahim4641@gmail.com");
+        email.setPreferredSize(new java.awt.Dimension(315, 38));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
 
-        jTextField5.setBackground(new java.awt.Color(58, 58, 58));
-        jTextField5.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(120, 120, 120));
-        jTextField5.setText("jTextField3");
-        jTextField5.setPreferredSize(new java.awt.Dimension(315, 38));
+        userName.setBackground(new java.awt.Color(58, 58, 58));
+        userName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        userName.setForeground(new java.awt.Color(120, 120, 120));
+        userName.setText("Eg: example");
+        userName.setPreferredSize(new java.awt.Dimension(315, 38));
 
-        goldenButton1.setText("Save Changes");
-        goldenButton1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        saveChanges.setText("Save Changes");
+        saveChanges.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +129,7 @@ public class SettingProfile extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(169, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(goldenButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -133,13 +138,13 @@ public class SettingProfile extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -157,31 +162,37 @@ public class SettingProfile extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6))
                 .addGap(32, 32, 32)
-                .addComponent(goldenButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(113, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private tg.trident.centurycinema.buttons.GoldenButton goldenButton1;
+    private javax.swing.JTextField branch;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField firstName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -191,10 +202,8 @@ public class SettingProfile extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField lastName;
+    private tg.trident.centurycinema.buttons.GoldenButton saveChanges;
+    private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }
