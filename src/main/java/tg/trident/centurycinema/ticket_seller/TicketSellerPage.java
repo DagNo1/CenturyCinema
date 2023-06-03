@@ -4,6 +4,9 @@
  */
 package tg.trident.centurycinema.ticket_seller;
 
+import java.awt.Component;
+
+
 /**
  *
  * @author dagim
@@ -15,8 +18,9 @@ public class TicketSellerPage extends javax.swing.JFrame {
      */
     public TicketSellerPage() {
         initComponents();
+        changePanel(dashboard1);
     }
-
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,9 +31,14 @@ public class TicketSellerPage extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        dashboard1 = new tg.trident.centurycinema.ticket_seller.Dashboard();
+        settingPassword1 = new tg.trident.centurycinema.ticket_seller.SettingPassword();
+        settingProfile1 = new tg.trident.centurycinema.ticket_seller.SettingProfile();
+        addReservation1 = new tg.trident.centurycinema.ticket_seller.AddReservation();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
+        mainTSPage = new javax.swing.JMenuItem();
         reservations = new javax.swing.JMenu();
         addReservation = new javax.swing.JMenuItem();
         settings = new javax.swing.JMenu();
@@ -39,17 +48,23 @@ public class TicketSellerPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPanel.setBackground(new java.awt.Color(37, 37, 37));
+        mainPanel.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout dashboard1Layout = new javax.swing.GroupLayout(dashboard1);
+        dashboard1.setLayout(dashboard1Layout);
+        dashboard1Layout.setHorizontalGroup(
+            dashboard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        dashboard1Layout.setVerticalGroup(
+            dashboard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 492, Short.MAX_VALUE)
         );
+
+        mainPanel.add(dashboard1, "card8");
+        mainPanel.add(settingPassword1, "card6");
+        mainPanel.add(settingProfile1, "card7");
+        mainPanel.add(addReservation1, "card5");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -93,6 +108,26 @@ public class TicketSellerPage extends javax.swing.JFrame {
             }
         });
         dashboard.add(logout);
+
+        mainTSPage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mainTSPage.setBackground(new java.awt.Color(64, 61, 61));
+        mainTSPage.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        mainTSPage.setForeground(new java.awt.Color(255, 255, 255));
+        mainTSPage.setText("Main Page");
+        mainTSPage.setBorder(null);
+        mainTSPage.setBorderPainted(false);
+        mainTSPage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mainTSPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainTSPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mainTSPage.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        mainTSPage.setOpaque(true);
+        mainTSPage.setPreferredSize(new java.awt.Dimension(150, 40));
+        mainTSPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainTSPageActionPerformed(evt);
+            }
+        });
+        dashboard.add(mainTSPage);
 
         jMenuBar1.add(dashboard);
 
@@ -202,17 +237,29 @@ public class TicketSellerPage extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void addReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addReservationActionPerformed
-        // TODO add your handling code here:
+        changePanel(addReservation1);
     }//GEN-LAST:event_addReservationActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
-        // TODO add your handling code here:
+       changePanel(settingProfile1);
     }//GEN-LAST:event_profileActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
+        changePanel(settingPassword1);
     }//GEN-LAST:event_passwordActionPerformed
 
+    private void mainTSPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainTSPageActionPerformed
+        changePanel(dashboard1);
+    }//GEN-LAST:event_mainTSPageActionPerformed
+
+    public void changePanel(Component c){
+         mainPanel.removeAll();
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        mainPanel.add(c);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }
     /**
      * @param args the command line arguments
      */
@@ -251,13 +298,18 @@ public class TicketSellerPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addReservation;
+    private tg.trident.centurycinema.ticket_seller.AddReservation addReservation1;
     private javax.swing.JMenu dashboard;
+    private tg.trident.centurycinema.ticket_seller.Dashboard dashboard1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem logout;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuItem mainTSPage;
     private javax.swing.JMenuItem password;
     private javax.swing.JMenuItem profile;
     private javax.swing.JMenu reservations;
+    private tg.trident.centurycinema.ticket_seller.SettingPassword settingPassword1;
+    private tg.trident.centurycinema.ticket_seller.SettingProfile settingProfile1;
     private javax.swing.JMenu settings;
     // End of variables declaration//GEN-END:variables
 }
