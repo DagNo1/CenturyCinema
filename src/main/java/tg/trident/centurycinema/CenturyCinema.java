@@ -5,7 +5,7 @@
 package tg.trident.centurycinema;
 
 import javax.swing.JFrame;
-import tg.trident.centurycinema.admin.AdminPage;
+import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
 /**
  *
  * @author dagim
@@ -13,7 +13,7 @@ import tg.trident.centurycinema.admin.AdminPage;
 public class CenturyCinema {
 
     public static void main(String[] args) {
-        JFrame frame = new AdminPage();
+        JFrame frame = new TicketSellerPage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 550);
         frame.setVisible(true);
