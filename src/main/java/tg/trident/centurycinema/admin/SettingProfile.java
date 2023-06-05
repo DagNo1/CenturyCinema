@@ -180,7 +180,7 @@ public class SettingProfile extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addGap(32, 32, 32)
                 .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

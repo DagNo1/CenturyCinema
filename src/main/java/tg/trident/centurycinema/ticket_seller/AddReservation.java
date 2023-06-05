@@ -40,10 +40,6 @@ public class AddReservation extends javax.swing.JPanel {
 
         next = new tg.trident.centurycinema.buttons.GoldenButton();
         jPanel1 = new javax.swing.JPanel();
-        seatSelectionPage1 = new tg.trident.centurycinema.ticket_seller.reservation_panels.SeatSelectionPage();
-        selectScreening1 = new tg.trident.centurycinema.ticket_seller.reservation_panels.SelectScreening();
-        ticketConfirmationPage1 = new tg.trident.centurycinema.ticket_seller.reservation_panels.TicketConfirmationPage();
-        ticketSuccessPage1 = new tg.trident.centurycinema.ticket_seller.reservation_panels.TicketSuccessPage();
 
         setBackground(new java.awt.Color(37, 37, 37));
 
@@ -56,18 +52,12 @@ public class AddReservation extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(37, 37, 37));
         jPanel1.setLayout(new java.awt.CardLayout());
-        jPanel1.add(seatSelectionPage1, "card2");
-        jPanel1.add(selectScreening1, "card3");
-        jPanel1.add(ticketConfirmationPage1, "card4");
-        jPanel1.add(ticketSuccessPage1, "card5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(315, 315, 315)
                 .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,9 +103,5 @@ public class AddReservation extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private tg.trident.centurycinema.buttons.GoldenButton next;
-    private tg.trident.centurycinema.ticket_seller.reservation_panels.SeatSelectionPage seatSelectionPage1;
-    private tg.trident.centurycinema.ticket_seller.reservation_panels.SelectScreening selectScreening1;
-    private tg.trident.centurycinema.ticket_seller.reservation_panels.TicketConfirmationPage ticketConfirmationPage1;
-    private tg.trident.centurycinema.ticket_seller.reservation_panels.TicketSuccessPage ticketSuccessPage1;
     // End of variables declaration//GEN-END:variables
 }

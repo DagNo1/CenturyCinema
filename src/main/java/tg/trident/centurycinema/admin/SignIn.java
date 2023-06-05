@@ -66,13 +66,11 @@ public class SignIn extends javax.swing.JFrame {
         jLabel4.setText("Glad to see you back");
 
         blackButton1.setText("Admin");
-        blackButton1.setPreferredSize(new java.awt.Dimension(72, 22));
 
         goldenButton1.setText("Ticket Seller");
         goldenButton1.setPreferredSize(new java.awt.Dimension(72, 22));
 
         goldenButton2.setText("Sign in");
-        goldenButton2.setPreferredSize(new java.awt.Dimension(72, 22));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

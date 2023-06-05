@@ -34,7 +34,6 @@ public class TicketSellerPage extends javax.swing.JFrame {
         dashboard1 = new tg.trident.centurycinema.ticket_seller.Dashboard();
         settingPassword1 = new tg.trident.centurycinema.ticket_seller.SettingPassword();
         settingProfile1 = new tg.trident.centurycinema.ticket_seller.SettingProfile();
-        addReservation1 = new tg.trident.centurycinema.ticket_seller.AddReservation();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
@@ -64,7 +63,6 @@ public class TicketSellerPage extends javax.swing.JFrame {
         mainPanel.add(dashboard1, "card8");
         mainPanel.add(settingPassword1, "card6");
         mainPanel.add(settingProfile1, "card7");
-        mainPanel.add(addReservation1, "card5");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -155,6 +153,11 @@ public class TicketSellerPage extends javax.swing.JFrame {
         addReservation.setMargin(new java.awt.Insets(0, 10, 0, 6));
         addReservation.setOpaque(true);
         addReservation.setPreferredSize(new java.awt.Dimension(150, 40));
+        addReservation.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                addReservationComponentShown(evt);
+            }
+        });
         addReservation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addReservationActionPerformed(evt);
@@ -252,6 +255,10 @@ public class TicketSellerPage extends javax.swing.JFrame {
         changePanel(dashboard1);
     }//GEN-LAST:event_mainTSPageActionPerformed
 
+    private void addReservationComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_addReservationComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addReservationComponentShown
+
     public void changePanel(Component c){
          mainPanel.removeAll();
         mainPanel.repaint();
@@ -298,7 +305,6 @@ public class TicketSellerPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addReservation;
-    private tg.trident.centurycinema.ticket_seller.AddReservation addReservation1;
     private javax.swing.JMenu dashboard;
     private tg.trident.centurycinema.ticket_seller.Dashboard dashboard1;
     private javax.swing.JMenuBar jMenuBar1;
