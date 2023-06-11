@@ -465,7 +465,9 @@ public class CenturyModel {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
-            String query = "INSERT INTO  RESERVATION(screening_id,ticket_seller_id,reserved_seats) VALUES(";
+            String query = "SELECT S.id T.id from SCREENING S, TICKET_SELLER T";
+//            if()
+            query = "INSERT INTO  RESERVATION(screening_id,ticket_seller_id,reserved_seats) VALUES(";
             query += "'" + screening_id + "'" + ",";
             query += "'" + ticket_seller_id + "'" + ",";
             int x = st.executeUpdate(query);
