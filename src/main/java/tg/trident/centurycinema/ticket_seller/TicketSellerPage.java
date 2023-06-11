@@ -31,6 +31,7 @@ public class TicketSellerPage extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        addReservation1 = new tg.trident.centurycinema.ticket_seller.AddReservation();
         dashboard1 = new tg.trident.centurycinema.ticket_seller.Dashboard();
         settingPassword1 = new tg.trident.centurycinema.ticket_seller.SettingPassword();
         settingProfile1 = new tg.trident.centurycinema.ticket_seller.SettingProfile();
@@ -48,6 +49,7 @@ public class TicketSellerPage extends javax.swing.JFrame {
 
         mainPanel.setBackground(new java.awt.Color(37, 37, 37));
         mainPanel.setLayout(new java.awt.CardLayout());
+        mainPanel.add(addReservation1, "card5");
 
         javax.swing.GroupLayout dashboard1Layout = new javax.swing.GroupLayout(dashboard1);
         dashboard1.setLayout(dashboard1Layout);
@@ -305,6 +307,7 @@ public class TicketSellerPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addReservation;
+    private tg.trident.centurycinema.ticket_seller.AddReservation addReservation1;
     private javax.swing.JMenu dashboard;
     private tg.trident.centurycinema.ticket_seller.Dashboard dashboard1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -5,6 +5,11 @@
 
 package tg.trident.centurycinema.ticket_seller.reservation_panels;
 
+import Model.CenturyModel;
+import Model.Movie;
+import Model.Screening;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
@@ -14,6 +19,9 @@ import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
  * @author dagim
  */
 public class SeatSelectionPage extends javax.swing.JPanel {
+    ArrayList<String> selectedSeats = new ArrayList<>();
+    ArrayList<String> unReservedSeatsList = new ArrayList<>();
+    int screeningId; 
 
     /** Creates new form SeatSelectionPage */
     public SeatSelectionPage() {
@@ -31,13 +39,14 @@ public class SeatSelectionPage extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         filterPeriodButton1 = new tg.trident.centurycinema.buttons.GoldenButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        availabelSeats = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         selectedSeatsText = new javax.swing.JLabel();
         seatsHtml = new javax.swing.JScrollPane();
+        addSeat = new tg.trident.centurycinema.buttons.GoldenButton();
+        freeSeats = new javax.swing.JComboBox<>();
+        clearSelected = new tg.trident.centurycinema.buttons.RedButton();
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Old Password");
@@ -51,20 +60,6 @@ public class SeatSelectionPage extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(37, 37, 37));
         setForeground(new java.awt.Color(255, 255, 255));
-
-        availabelSeats.setBackground(new java.awt.Color(58, 58, 58));
-        availabelSeats.setBorder(null);
-        availabelSeats.setForeground(new java.awt.Color(255, 255, 255));
-        availabelSeats.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        availabelSeats.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        availabelSeats.setDragEnabled(true);
-        availabelSeats.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
-        jScrollPane1.setViewportView(availabelSeats);
-        availabelSeats.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -89,6 +84,30 @@ public class SeatSelectionPage extends javax.swing.JPanel {
 
         seatsHtml.setBorder(null);
 
+        addSeat.setText("Add Seat");
+        addSeat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSeatActionPerformed(evt);
+            }
+        });
+
+        freeSeats.setBackground(new java.awt.Color(58, 58, 58));
+        freeSeats.setForeground(new java.awt.Color(120, 120, 120));
+        freeSeats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Free Seats" }));
+        freeSeats.setBorder(null);
+        freeSeats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freeSeatsActionPerformed(evt);
+            }
+        });
+
+        clearSelected.setText("Clear Selected");
+        clearSelected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearSelectedActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,11 +123,17 @@ public class SeatSelectionPage extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(560, 560, 560))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(freeSeats, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(selectedSeatsText, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(addSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(clearSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(selectedSeatsText, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12))
                             .addComponent(seatsHtml, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16))))
         );
@@ -123,12 +148,15 @@ public class SeatSelectionPage extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(seatsHtml, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectedSeatsText, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                .addComponent(seatsHtml, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clearSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(freeSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectedSeatsText, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,15 +164,64 @@ public class SeatSelectionPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_filterPeriodButton1ActionPerformed
 
+    private void addSeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSeatActionPerformed
+       if(freeSeats.getSelectedItem().toString().equals("No Free Seats")){
+           return;
+       }
+       unReservedSeatsList.remove(freeSeats.getSelectedItem().toString());
+       selectedSeats.add(freeSeats.getSelectedItem().toString());
+       selectedSeatsText.setText(selectedSeatsText.getText() + " " + freeSeats.getSelectedItem().toString());
+       populateFreeSeatsComboBox();
+    }//GEN-LAST:event_addSeatActionPerformed
 
+    private void freeSeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freeSeatsActionPerformed
+         
+    }//GEN-LAST:event_freeSeatsActionPerformed
+
+    private void clearSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSelectedActionPerformed
+        setScreening(screeningId);
+        selectedSeatsText.setText("Selected Seats: ");
+        selectedSeats.clear();
+    }//GEN-LAST:event_clearSelectedActionPerformed
+
+    public void setScreening(int screeningId){
+        this.screeningId = screeningId;
+        unReservedSeatsList = CenturyModel.getAllUnreservedSeatsForScreenings(screeningId);
+        populateFreeSeatsComboBox();
+    }
+    
+    public void populateFreeSeatsComboBox(){
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        freeSeats.setModel(model);
+        for (String item : unReservedSeatsList) {
+             model.addElement(item);
+        }
+    }
+    
+    public ArrayList<String> getSelectedSeats(){
+        return selectedSeats;
+    }
+    
+    public int getScreeningId(){
+        return screeningId;
+    }
+    
+    public void clearData(){
+        selectedSeatsText.setText("Selected Seats: ");
+        selectedSeats.clear();
+        screeningId = -1;
+        unReservedSeatsList.clear();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> availabelSeats;
+    private tg.trident.centurycinema.buttons.GoldenButton addSeat;
+    private tg.trident.centurycinema.buttons.RedButton clearSelected;
     private tg.trident.centurycinema.buttons.GoldenButton filterPeriodButton1;
+    private javax.swing.JComboBox<String> freeSeats;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane seatsHtml;
     private javax.swing.JLabel selectedSeatsText;
     // End of variables declaration//GEN-END:variables

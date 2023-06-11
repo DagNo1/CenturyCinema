@@ -4,21 +4,40 @@
  */
 package tg.trident.centurycinema.ticket_seller.reservation_panels;
 
+import Model.CenturyModel;
+import Model.Movie;
+import Model.Screening;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
-
 /**
  *
  * @author dagim
  */
 public class SelectScreening extends javax.swing.JPanel {
+    public ArrayList<Integer> currentList = new ArrayList<>();
 
     /**
      * Creates new form AddReservation
      */
     public SelectScreening() {
         initComponents();
+        
+        ArrayList<Screening> screenings = CenturyModel.getAllScreening();
+        populateScreeningComboBox(screenings);
+        
+        //Setting the date combo box
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        // Clear the existing items in the JComboBox
+        dateSelector.setModel(model);
+        ArrayList<String> allDates = new ArrayList<>();
+         for (Screening item : screenings) {
+            if(!allDates.contains(item.getDate())){
+                allDates.add(item.getDate());
+                model.addElement(item.getDate());
+            }
+        }
     }
 
     /**
@@ -30,22 +49,21 @@ public class SelectScreening extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        screeningComboBox = new javax.swing.JComboBox<>();
         filterDateButton = new tg.trident.centurycinema.buttons.GoldenButton();
-        date = new javax.swing.JTextField();
-        filterPeriodButton = new tg.trident.centurycinema.buttons.GoldenButton();
-        period = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        clearFilter = new tg.trident.centurycinema.buttons.GoldenButton();
+        dateSelector = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(37, 37, 37));
 
-        jComboBox1.setBackground(new java.awt.Color(58, 58, 58));
-        jComboBox1.setForeground(new java.awt.Color(120, 120, 120));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO screenings for selected date and/or period." }));
-        jComboBox1.setBorder(null);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        screeningComboBox.setBackground(new java.awt.Color(58, 58, 58));
+        screeningComboBox.setForeground(new java.awt.Color(120, 120, 120));
+        screeningComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO screenings for selected date and/or period." }));
+        screeningComboBox.setBorder(null);
+        screeningComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                screeningComboBoxActionPerformed(evt);
             }
         });
 
@@ -56,119 +74,107 @@ public class SelectScreening extends javax.swing.JPanel {
             }
         });
 
-        date.setBackground(new java.awt.Color(58, 58, 58));
-        date.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        date.setForeground(new java.awt.Color(120, 120, 120));
-        date.setText("Date (DD/MM/YY)");
-        date.setBorder(null);
-        date.setPreferredSize(new java.awt.Dimension(315, 38));
-        date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateActionPerformed(evt);
-            }
-        });
-
-        filterPeriodButton.setText("Filter by Period");
-        filterPeriodButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterPeriodButtonActionPerformed(evt);
-            }
-        });
-
-        period.setBackground(new java.awt.Color(58, 58, 58));
-        period.setForeground(new java.awt.Color(120, 120, 120));
-        period.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Period 1 ( 4:30 - 7:00 L.T)", "Period 2 ( 7:30 - 10:00 L.T)", "Period 3 ( 10:30 - 1:00 L.T)", "Period 4 ( 1:30 - 4:00 L.T)" }));
-        period.setBorder(null);
-        period.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                periodActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Select Screening");
+
+        clearFilter.setText("Clear Filters");
+        clearFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFilterActionPerformed(evt);
+            }
+        });
+
+        dateSelector.setBackground(new java.awt.Color(58, 58, 58));
+        dateSelector.setForeground(new java.awt.Color(120, 120, 120));
+        dateSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Dates" }));
+        dateSelector.setBorder(null);
+        dateSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateSelectorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(347, 347, 347))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(160, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(filterDateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(101, 101, 101)
-                                        .addComponent(period, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(filterPeriodButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)))))
-                        .addGap(188, 188, 188))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(347, 347, 347))))
+                .addGap(160, 160, 160)
+                .addComponent(screeningComboBox, 0, 501, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(filterDateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dateSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(207, 207, 207))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(period)
-                        .addGap(126, 126, 126))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(filterDateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filterPeriodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72)))
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(dateSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filterDateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(screeningComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void screeningComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_screeningComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
+    }//GEN-LAST:event_screeningComboBoxActionPerformed
 
     private void filterDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterDateButtonActionPerformed
         // TODO add your handling code here:
+        String dateSelected = dateSelector.getSelectedItem().toString();
+        populateScreeningComboBox(CenturyModel.getAllScreeningsOnDate(dateSelected));
     }//GEN-LAST:event_filterDateButtonActionPerformed
 
-    private void filterPeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterPeriodButtonActionPerformed
+    private void clearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFilterActionPerformed
+        populateScreeningComboBox(CenturyModel.getAllScreening());
+    }//GEN-LAST:event_clearFilterActionPerformed
+
+    private void dateSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateSelectorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_filterPeriodButtonActionPerformed
+    }//GEN-LAST:event_dateSelectorActionPerformed
 
-    private void periodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_periodActionPerformed
+    public void populateScreeningComboBox(ArrayList<Screening> allScreenings ){
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 
+        // Clear the existing items in the JComboBox
+        screeningComboBox.setModel(model);
+        currentList.clear();
+        // Add your own ArrayList items to the JComboBox
+        for (Screening item : allScreenings) {
+            Movie movie = CenturyModel.getMovieById(item.getMovie_id());
+            model.addElement("Movie: " +  movie.getTitle() +  ",  Period: " + item.getPeriod() + ",  Date" + item.getDate());
+            currentList.add(item.getId());
+        }
+    }
 
+    public int getSelectedScreening(){
+        return currentList.get(screeningComboBox.getSelectedIndex());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField date;
+    private tg.trident.centurycinema.buttons.GoldenButton clearFilter;
+    private javax.swing.JComboBox<String> dateSelector;
     private tg.trident.centurycinema.buttons.GoldenButton filterDateButton;
-    private tg.trident.centurycinema.buttons.GoldenButton filterPeriodButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> period;
+    private javax.swing.JComboBox<String> screeningComboBox;
     // End of variables declaration//GEN-END:variables
 }
