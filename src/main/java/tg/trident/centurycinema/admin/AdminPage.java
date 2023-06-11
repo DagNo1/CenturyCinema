@@ -4,6 +4,8 @@
  */
 package tg.trident.centurycinema.admin;
 
+import java.awt.PopupMenu;
+
 /**
  *
  * @author dagim
@@ -27,9 +29,11 @@ public class AdminPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         ticketSellers = new javax.swing.JMenu();
         users = new javax.swing.JMenuItem();
         userAnalytics = new javax.swing.JMenuItem();
@@ -53,6 +57,8 @@ public class AdminPage extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -96,6 +102,9 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         dashboard.add(logout);
+
+        jMenuItem1.setText("jMenuItem1");
+        dashboard.add(jMenuItem1);
 
         jMenuBar1.add(dashboard);
         dashboard.getAccessibleContext().setAccessibleName("dashboard");
@@ -277,11 +286,18 @@ public class AdminPage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 826, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 434, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -356,6 +372,8 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem addRoom;
     private javax.swing.JMenu dashboard;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem logout;
     private javax.swing.JMenu movies;
@@ -367,4 +385,5 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem userAnalytics;
     private javax.swing.JMenuItem users;
     // End of variables declaration//GEN-END:variables
+
 }

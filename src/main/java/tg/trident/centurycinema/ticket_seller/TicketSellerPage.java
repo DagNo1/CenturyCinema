@@ -66,8 +66,8 @@ public class TicketSellerPage extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setAlignmentY(0.5F);
+        jMenuBar1.setBorderPainted(false);
         jMenuBar1.setOpaque(true);
         jMenuBar1.setPreferredSize(new java.awt.Dimension(800, 58));
 

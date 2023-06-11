@@ -4,6 +4,9 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author abelcosmic
@@ -27,7 +30,7 @@ public class SignIn extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -36,18 +39,23 @@ public class SignIn extends javax.swing.JFrame {
         goldenButton1 = new tg.trident.centurycinema.buttons.GoldenButton();
         goldenButton2 = new tg.trident.centurycinema.buttons.GoldenButton();
         jPanel2 = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(37, 37, 37));
 
-        jTextField3.setBackground(new java.awt.Color(58, 58, 58));
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(120, 120, 120));
-        jTextField3.setText("marvelous@email.com");
-        jTextField3.setPreferredSize(new java.awt.Dimension(315, 38));
+        email.setBackground(new java.awt.Color(58, 58, 58));
+        email.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        email.setForeground(new java.awt.Color(120, 120, 120));
+        email.setText("marvelous@email.com");
+        email.setPreferredSize(new java.awt.Dimension(315, 38));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,6 +79,11 @@ public class SignIn extends javax.swing.JFrame {
         goldenButton1.setPreferredSize(new java.awt.Dimension(72, 22));
 
         goldenButton2.setText("Sign in");
+        goldenButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goldenButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,11 +96,11 @@ public class SignIn extends javax.swing.JFrame {
             .addGap(0, 66, Short.MAX_VALUE)
         );
 
-        jPasswordField1.setBackground(new java.awt.Color(58, 58, 58));
-        jPasswordField1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(120, 120, 120));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(315, 38));
+        password.setBackground(new java.awt.Color(58, 58, 58));
+        password.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        password.setForeground(new java.awt.Color(120, 120, 120));
+        password.setText("jPasswordField1");
+        password.setPreferredSize(new java.awt.Dimension(315, 38));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,8 +122,8 @@ public class SignIn extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)))
                 .addGap(184, 184, 184))
         );
@@ -130,11 +143,11 @@ public class SignIn extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(10, 10, 10)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(goldenButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(56, Short.MAX_VALUE))
@@ -144,6 +157,19 @@ public class SignIn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void goldenButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goldenButton2ActionPerformed
+        // TODO add your handling code here:
+        CenturyModel century = new CenturyModel();
+        if (!email.getText().equals(century.getAdmin().getUser_name()) || !password.getText().equals(century.getAdmin().getPassword())) {
+            // Incorrect credentials, show an error message
+            JOptionPane.showMessageDialog(this, "Invalid email or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_goldenButton2ActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +208,7 @@ public class SignIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private tg.trident.centurycinema.buttons.BlackButton blackButton1;
+    private javax.swing.JTextField email;
     private tg.trident.centurycinema.buttons.GoldenButton goldenButton1;
     private tg.trident.centurycinema.buttons.GoldenButton goldenButton2;
     private javax.swing.JLabel jLabel1;
@@ -190,7 +217,6 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
 }

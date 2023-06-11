@@ -19,10 +19,10 @@ import java.util.ArrayList;
 public class CenturyModel {
 
     //Gets all the info about admin from Database
-    public static Admin getAdmin() {
+    public  Admin getAdmin() {
         Admin admin = new Admin();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:8080/CENTURY_CINEMA", "postgres", "change password");
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM ADMIN");
             while (rs.next()) {
@@ -38,7 +38,7 @@ public class CenturyModel {
     }
 
     //Updates Admin information
-    public static void updateAdmin(String full_name, String user_name, String password) {
+    public  void updateAdmin(String full_name, String user_name, String password) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -54,7 +54,7 @@ public class CenturyModel {
     }
 
     //Gets all the Ticket Sellers
-    public static ArrayList<TicketSeller> getAllTicketSellers() {
+    public  ArrayList<TicketSeller> getAllTicketSellers() {
         ArrayList<TicketSeller> allTicketSellers = new ArrayList<>();
 
         try {
@@ -78,7 +78,7 @@ public class CenturyModel {
     }
 
     //Gets a single Ticket Seller by their ID
-    public static TicketSeller getTicketSellerById(int id) {
+    public  TicketSeller getTicketSellerById(int id) {
         TicketSeller ticketSeller = new TicketSeller();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -100,7 +100,7 @@ public class CenturyModel {
     }
 
     //Updates the Ticket Seller Information by their id
-    public static void updateTicketSeller(int id, String full_name, String user_name, String password) {
+    public  void updateTicketSeller(int id, String full_name, String user_name, String password) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -117,7 +117,7 @@ public class CenturyModel {
     }
 
     //Delete the Ticket Seller by their id
-    public static void deleteTicketSeller(int id) {
+    public  void deleteTicketSeller(int id) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -131,7 +131,7 @@ public class CenturyModel {
     }
 
     //Creates a Ticket Seller
-    public static void createTicketSeller(String full_name, String user_name, String password) {
+    public  void createTicketSeller(String full_name, String user_name, String password) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -148,7 +148,7 @@ public class CenturyModel {
     }
 
     //Creates a room
-    public static void createRoom(int room_number, int capacity, int num_rows, int num_columns) throws CapacityException {
+    public  void createRoom(int room_number, int capacity, int num_rows, int num_columns) throws CapacityException {
         if (num_rows + num_columns > capacity) {
             throw new CapacityException();
         } else {
@@ -171,7 +171,7 @@ public class CenturyModel {
     }
 
     //Updates data of a room
-    public static void updateRoom(int room_number, int capacity, int num_rows, int num_columns) throws CapacityException {
+    public  void updateRoom(int room_number, int capacity, int num_rows, int num_columns) throws CapacityException {
         if (num_rows + num_columns > capacity) {
             throw new CapacityException();
         } else {
@@ -193,7 +193,7 @@ public class CenturyModel {
     }
 
     //Gets all Rooms Information
-    public static ArrayList<Room> getAllRooms() {
+    public  ArrayList<Room> getAllRooms() {
         ArrayList<Room> allRooms = new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -216,7 +216,7 @@ public class CenturyModel {
     }
 
     //Gets a single Room Information by id
-    public static Room getRoomById(int room_number) {
+    public  Room getRoomById(int room_number) {
         Room room = new Room();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -238,7 +238,7 @@ public class CenturyModel {
     }
 
     //Deletes a Room by Id
-    public static void deleteRoom(int room_number) {
+    public  void deleteRoom(int room_number) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -252,7 +252,7 @@ public class CenturyModel {
     }
 
     //Create Movie
-    public static void createMovie(String title, String genre, String synopsis, String release_date, int duration, String language, String poster) {
+    public  void createMovie(String title, String genre, String synopsis, String release_date, int duration, String language, String poster) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -273,7 +273,7 @@ public class CenturyModel {
     }
 
     //Updates Movie by id
-    public static void updateMovie(int id, String title, String genre, String synopsis, String release_date, String duration, String language, String poster) {
+    public  void updateMovie(int id, String title, String genre, String synopsis, String release_date, String duration, String language, String poster) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -294,7 +294,7 @@ public class CenturyModel {
     }
 
     //Gets all Movies Information
-    public static ArrayList<Movie> getAllMovies() {
+    public  ArrayList<Movie> getAllMovies() {
         ArrayList<Movie> allMovies = new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -321,7 +321,7 @@ public class CenturyModel {
     }
 
     //Gets Movie Information by Id
-    public static Movie getMovieById(int id) {
+    public  Movie getMovieById(int id) {
         Movie movie = new Movie();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -347,7 +347,7 @@ public class CenturyModel {
     }
 
     //Delete Movie by Id
-    public static void deleteMovie(int id) {
+    public  void deleteMovie(int id) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -361,7 +361,7 @@ public class CenturyModel {
     }
 
     //Create Screening
-    public static void createScreening(int room_number, int movie_id, String date, String period, double price) {
+    public  void createScreening(int room_number, int movie_id, String date, String period, double price) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -380,7 +380,7 @@ public class CenturyModel {
     }
 
     //Update Screening by Id
-    public static void updateScreening(int id, int room_number, int movie_id, String date, String period, double price) {
+    public  void updateScreening(int id, int room_number, int movie_id, String date, String period, double price) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -399,7 +399,7 @@ public class CenturyModel {
     }
 
     //Gets all Movies Information
-    public static ArrayList<Screening> getAllScreening() {
+    public  ArrayList<Screening> getAllScreening() {
         ArrayList<Screening> allScreenings = new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -424,7 +424,7 @@ public class CenturyModel {
     }
 
     //Gets Movie Information by Id
-    public static Screening getScreeningById(int id) {
+    public  Screening getScreeningById(int id) {
         Screening screening = new Screening();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -447,7 +447,7 @@ public class CenturyModel {
     }
 
     //Delete Movie by Id
-    public static void deleteScreening(int id) {
+    public  void deleteScreening(int id) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -461,7 +461,7 @@ public class CenturyModel {
     }
 
     //Create Screening
-    public static void createReservation(int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
+    public  void createReservation(int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -477,7 +477,7 @@ public class CenturyModel {
     }
 
     //Update Screening by Id
-    public static void updateReservation(int id, int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
+    public  void updateReservation(int id, int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -493,7 +493,7 @@ public class CenturyModel {
     }
 
     //Gets all Movies Information
-    public static ArrayList<Reservation> getAllReservation() {
+    public  ArrayList<Reservation> getAllReservation() {
         ArrayList<Reservation> allReservations = new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -514,7 +514,7 @@ public class CenturyModel {
     }
 
     //Gets Movie Information by Id
-    public static Reservation getReservationById(int id) {
+    public  Reservation getReservationById(int id) {
         Reservation reservation = new Reservation();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
@@ -534,7 +534,7 @@ public class CenturyModel {
     }
 
     //Delete Movie by Id
-    public static void deleteReservation(int id) {
+    public  void deleteReservation(int id) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
             Statement st = conn.createStatement();
@@ -547,12 +547,12 @@ public class CenturyModel {
         }
     }
 
-    public static void main(String[] args) {
-//        createScreening(1, 1, "2023/02/01", "lunch time", 20.00);
-        ArrayList<Screening> screenings = getAllScreening();
-        screenings.forEach(screen -> System.out.println(screen.getPeriod()));
-        Screening sc = getScreeningById(3);
-        System.out.println(sc.getDate());
-//        deleteScreening(2);
-    }
+//    public static void main(String[] args) {
+////        createScreening(1, 1, "2023/02/01", "lunch time", 20.00);
+//        ArrayList<Screening> screenings = getAllScreening();
+//        screenings.forEach(screen -> System.out.println(screen.getPeriod()));
+//        Screening sc = getScreeningById(3);
+//        System.out.println(sc.getDate());
+////        deleteScreening(2);
+//    }
 }
