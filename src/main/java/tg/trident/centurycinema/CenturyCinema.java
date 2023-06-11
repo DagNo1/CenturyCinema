@@ -23,7 +23,7 @@ public class CenturyCinema {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 550);
         frame.setVisible(true);
-        System.out.print(CenturyModel.getRoomIdForScreening(1));
+//        System.out.print(CenturyModel.getRoomIdForScreening(1));
         
     }
 }
