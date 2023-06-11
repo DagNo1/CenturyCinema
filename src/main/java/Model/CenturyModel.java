@@ -12,18 +12,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author mohammed
  */
 public class CenturyModel {
-    public static String database= "jdbc:postgresql://localhost:5432/century_cinema";
-    public static String databaseuser = "postgres";
-    public static String databasePassword = "ken&mata";
-    
+
+    public static String database = "jdbc:mariadb://localhost:3306/century_cinema";
+    public static String databaseuser = "root";
+    public static String databasePassword = "Nebil1053";
+
     //Gets all the info about admin from Database
-    public static Admin getAdmin() { 
+    public static Admin getAdmin() {
         Admin admin = new Admin();
         try {
             Connection conn = DriverManager.getConnection(database, databaseuser, databasePassword);
@@ -465,22 +469,51 @@ public class CenturyModel {
     }
 
     //Create Screening
-    public static void createReservation(int screening_id, int ticket_seller_id, String reserved_seats) {//TODO: if reservation aleardy exists just append resrved seats
-        try {
-            Connection conn = DriverManager.getConnection(database, databaseuser, databasePassword);
-            Statement st = conn.createStatement();
-            String query = "INSERT INTO  RESERVATION(screening_id,ticket_seller_id,reserved_seats) VALUES(";
-            query += "'" + screening_id + "'" + ",";
-            query += "'" + ticket_seller_id + "'" + ",";
-            query += "'" + reserved_seats + "');"; 
-            int x = st.executeUpdate(query);
-      
-            st.close();
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+   public static void createReservation(int screening_id, int ticket_seller_id, String reserved_seats) {
+    ArrayList<Reservation> createdReservations = new ArrayList<>();
+    
+    try {
+        Connection conn = DriverManager.getConnection(database, databaseuser, databasePassword);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM RESERVATION");
+
+        while (rs.next()) {
+            Reservation r = new Reservation();
+            r.setScreening_id(rs.getInt(1));
+            r.setTicket_seller_id(rs.getInt(2));
+            String reserved = rs.getString("reserved_seats");
+            String[] arr = reserved.split(",");
+            r.setReserved_seats(new ArrayList<>(Arrays.asList(arr)));
+            createdReservations.add(r);
         }
+
+        boolean reservationExists = false;
+
+        for (Reservation res : createdReservations) {
+            if (res.getScreening_id() == screening_id && res.getTicket_seller_id() == ticket_seller_id) {
+                res.getReserved_seats().add(reserved_seats);
+                String seats = String.join(",", res.getReserved_seats());
+                String query = "UPDATE RESERVATION SET reserved_seats = '" + seats + "' WHERE screening_id = " + screening_id;
+                st.executeUpdate(query);
+                reservationExists = true;
+                break;
+            }
+        }
+
+        if (!reservationExists) {
+            String query = "INSERT INTO RESERVATION(screening_id, ticket_seller_id, reserved_seats) VALUES (";
+            query += "'" + screening_id + "',";
+            query += "'" + ticket_seller_id + "',";
+            query += "'" + reserved_seats + "');";
+            st.executeUpdate(query);
+        }
+
+        st.close();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
     }
+}
 
     //Update Screening by Id
     public static void updateReservation(int id, int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
@@ -552,9 +585,9 @@ public class CenturyModel {
             System.out.println(e.getMessage());
         }
     }
-    
-    public static  ArrayList<Screening> getAllScreeningsOnDate(String date) {
-         ArrayList<Screening> allScreenings = new ArrayList<>();
+
+    public static ArrayList<Screening> getAllScreeningsOnDate(String date) {
+        ArrayList<Screening> allScreenings = new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection(database, databaseuser, databasePassword);
             Statement st = conn.createStatement();
@@ -576,15 +609,15 @@ public class CenturyModel {
         }
         return allScreenings;
     }
-    
-    public static  ArrayList<String> getAllUnreservedSeatsForScreenings(int id) {
+
+    public static ArrayList<String> getAllUnreservedSeatsForScreenings(int id) {
         ArrayList<String> unReservedSeatsList = new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection(database, databaseuser, databasePassword);
             Statement st = conn.createStatement();
-            
+
             //getting all reserved seats
-            ResultSet rs = st.executeQuery( "SELECT reserved_seats FROM RESERVATION WHERE screening_id = " + id + ";");
+            ResultSet rs = st.executeQuery("SELECT reserved_seats FROM RESERVATION WHERE screening_id = " + id + ";");
             ArrayList<String> reservedSeatsList = new ArrayList<>();
             while (rs.next()) {
                 String reservedSeats = rs.getString("reserved_seats");
@@ -593,33 +626,29 @@ public class CenturyModel {
                     reservedSeatsList.add(seat.trim()); // Remove leading/trailing spaces if needed
                 }
             }
-            
+
             //getting room id for screening
             rs = st.executeQuery("SELECT room_number FROM SCREENING WHERE id = " + id + ";");
             rs.next();
             int roomId = rs.getInt("room_number");
-            
-            
+
             //getting room size
             rs = st.executeQuery("SELECT num_rows, num_columns FROM ROOM WHERE room_number = " + roomId);
             rs.next();
             int rows = rs.getInt("num_rows");
             int cols = rs.getInt("num_columns");
-            
-            
-            
+
             //getting unreserved seat names 
             for (int row = 1; row <= rows; row++) {
                 for (int col = 1; col <= cols; col++) {
                     String seatName = Character.toString((char) ('a' + row - 1)) + col;
-                    if(reservedSeatsList.contains(seatName)){
+                    if (reservedSeatsList.contains(seatName)) {
                         continue;
                     }
                     unReservedSeatsList.add(seatName);
                 }
             }
 
-            
             st.close();
             conn.close();
         } catch (SQLException e) {
@@ -627,14 +656,27 @@ public class CenturyModel {
         }
         return unReservedSeatsList;
     }
-    
 
     public static void main(String[] args) {
-//        createScreening(1, 1, "2023/02/01", "lunch time", 20.00);
-        ArrayList<Screening> screenings = getAllScreening();
-        screenings.forEach(screen -> System.out.println(screen.getPeriod()));
-        Screening sc = getScreeningById(3);
-        System.out.println(sc.getDate());
-//        deleteScreening(2);
+        // Example usage of the create methods
+
+        // Create a new Ticket Seller
+//        CenturyModel.createTicketSeller("Jane Doe", "janedoe", "password123");
+//        // Create a new Room
+//        try {
+//            CenturyModel.createRoom(101, 100, 10, 10);
+//        } catch (CapacityException e) {
+//            System.out.println("CapacityException: The sum of rows and columns exceeds the capacity.");
+//        }
+//
+//        // Create a new Movie
+//        CenturyModel.createMovie("Movie Title", "Action", "Synopsis", "2023-06-11", 120, "English", "poster.jpg");
+//
+//        // Create a new Screening
+//        CenturyModel.createScreening(101, 1, "2023-06-13", "09:00 AM", 10.99);
+//
+//        // Create a new Ticket
+        CenturyModel.createReservation(1, 1, "A1");
+
     }
 }
