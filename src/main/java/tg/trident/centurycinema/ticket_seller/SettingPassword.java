@@ -4,6 +4,10 @@
  */
 package tg.trident.centurycinema.ticket_seller;
 
+import Model.CenturyModel;
+import tg.trident.centurycinema.CenturyCinema;
+
+
 
 /**
  *
@@ -43,23 +47,25 @@ public class SettingPassword extends javax.swing.JPanel {
         oldPassword.setBackground(new java.awt.Color(58, 58, 58));
         oldPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         oldPassword.setForeground(new java.awt.Color(120, 120, 120));
-        oldPassword.setText("Enter old password");
         oldPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         newPassword.setBackground(new java.awt.Color(58, 58, 58));
         newPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         newPassword.setForeground(new java.awt.Color(120, 120, 120));
-        newPassword.setText("Enter new password");
         newPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         confrimPassword.setBackground(new java.awt.Color(58, 58, 58));
         confrimPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         confrimPassword.setForeground(new java.awt.Color(120, 120, 120));
-        confrimPassword.setText("Re-enter your new password");
         confrimPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         saveChanges.setText("Save Changes");
         saveChanges.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        saveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,15 +136,23 @@ public class SettingPassword extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(36, 36, 36)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesActionPerformed
+        if(!newPassword.getText().equals(confrimPassword.getText())){
+            System.out.println("NOT SAME PASSWORD");
+            return;
+        }
+        CenturyModel.updateTicketSellerPassword(CenturyCinema.id, newPassword.getText(), oldPassword.getText());
+    }//GEN-LAST:event_saveChangesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

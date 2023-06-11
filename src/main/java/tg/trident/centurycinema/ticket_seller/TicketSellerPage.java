@@ -262,7 +262,7 @@ public class TicketSellerPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addReservationComponentShown
 
     public void changePanel(Component c){
-         mainPanel.removeAll();
+        mainPanel.removeAll();
         mainPanel.repaint();
         mainPanel.revalidate();
         mainPanel.add(c);
