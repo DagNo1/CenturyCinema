@@ -4,6 +4,7 @@
  */
 package Model;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -11,21 +12,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author mohammed
  */
 public class CenturyModel {
-
+    public static String database= "jdbc:postgresql://localhost:5432/century_cinema";
+    public static String databaseUser = "postgres";
+    public static String databasePassword = "ken&mata";
+    
     //Gets all the info about admin from Database
     public static Admin getAdmin() {
         Admin admin = new Admin();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM ADMIN");
-            while (rs.next()) {
+            while (rs.next()) {// why loop if you are going to return only one admin?
                 admin.setId(rs.getInt(1));
                 admin.setFull_name(rs.getString(2));
                 admin.setUser_name(rs.getString(3));
@@ -40,7 +47,7 @@ public class CenturyModel {
     //Updates Admin information
     public static void updateAdmin(String full_name, String user_name, String password) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "UPDATE ADMIN SET full_name = + " + "'" + full_name + "'" + ",";
             query += "user_name = " + "'" + user_name + "'" + ",";
@@ -58,7 +65,7 @@ public class CenturyModel {
         ArrayList<TicketSeller> allTicketSellers = new ArrayList<>();
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM TICKET_SELLER");
             while (rs.next()) {
@@ -81,7 +88,7 @@ public class CenturyModel {
     public static TicketSeller getTicketSellerById(int id) {
         TicketSeller ticketSeller = new TicketSeller();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM TICKET_SELLER WHERE id = " + id);
 
@@ -100,13 +107,13 @@ public class CenturyModel {
     }
 
     //Updates the Ticket Seller Information by their id
-    public static void updateTicketSeller(int id, String full_name, String user_name, String password) {
+    public static void updateTicketSellerProfile(int id, String full_name, String user_name) {//todo: add email
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
-            String query = "UPDATE TICKET_SELLER SET full_name =" + "'" + full_name + "'" + ",";
-            query += "user_name = " + "'" + user_name + "'" + ",";
-            query += "password = " + "'" + password + "'";
+            String query = "UPDATE TICKET_SELLER SET ";
+            query += "full_name = '" + full_name + "', ";
+            query += "user_name = '" + user_name + "' ";
             query += "WHERE id = " + id;
             int x = st.executeUpdate(query);
             st.close();
@@ -119,7 +126,7 @@ public class CenturyModel {
     //Delete the Ticket Seller by their id
     public static void deleteTicketSeller(int id) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "DELETE FROM TICKET_SELLER WHERE id = " + id;
             int x = st.executeUpdate(query);
@@ -133,7 +140,7 @@ public class CenturyModel {
     //Creates a Ticket Seller
     public static void createTicketSeller(String full_name, String user_name, String password) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "INSERT INTO  TICKET_SELLER(full_name,user_name,password) VALUES(";
             query += "'" + full_name + "'" + ",";
@@ -153,7 +160,7 @@ public class CenturyModel {
             throw new CapacityException();
         } else {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+                Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
                 Statement st = conn.createStatement();
                 String query = "INSERT INTO ROOM(room_number, capacity, num_rows, num_columns) VALUES(";
                 query += "'" + room_number + "'" + ",";
@@ -176,7 +183,7 @@ public class CenturyModel {
             throw new CapacityException();
         } else {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+                Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
                 Statement st = conn.createStatement();
                 String query = "UPDATE ROOM SET capacity = " + capacity + ",";
                 query += "num_rows = " + num_rows + ",";
@@ -196,7 +203,7 @@ public class CenturyModel {
     public static ArrayList<Room> getAllRooms() {
         ArrayList<Room> allRooms = new ArrayList<>();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM ROOM");
             while (rs.next()) {
@@ -219,7 +226,7 @@ public class CenturyModel {
     public static Room getRoomById(int room_number) {
         Room room = new Room();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM ROOM WHERE room_number = " + room_number);
 
@@ -240,7 +247,7 @@ public class CenturyModel {
     //Deletes a Room by Id
     public static void deleteRoom(int room_number) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "DELETE FROM ROOM WHERE room_number = " + room_number;
             int x = st.executeUpdate(query);
@@ -254,7 +261,7 @@ public class CenturyModel {
     //Create Movie
     public static void createMovie(String title, String genre, String synopsis, String release_date, int duration, String language, String poster) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "INSERT INTO  MOVIE(title,genre,synopsis,release_date,duration,language,poster) VALUES(";
             query += "'" + title + "'" + ",";
@@ -275,7 +282,7 @@ public class CenturyModel {
     //Updates Movie by id
     public static void updateMovie(int id, String title, String genre, String synopsis, String release_date, String duration, String language, String poster) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "UPDATE MOVIE SET title = " + "'" + title + "'" + ",";
             query += "genre = " + "'" + genre + "'" + ",";
@@ -297,7 +304,7 @@ public class CenturyModel {
     public static ArrayList<Movie> getAllMovies() {
         ArrayList<Movie> allMovies = new ArrayList<>();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM MOVIE");
             while (rs.next()) {
@@ -324,7 +331,7 @@ public class CenturyModel {
     public static Movie getMovieById(int id) {
         Movie movie = new Movie();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM MOVIE WHERE id = " + id);
 
@@ -349,7 +356,7 @@ public class CenturyModel {
     //Delete Movie by Id
     public static void deleteMovie(int id) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "DELETE FROM MOVIE WHERE id = " + id;
             int x = st.executeUpdate(query);
@@ -363,7 +370,7 @@ public class CenturyModel {
     //Create Screening
     public static void createScreening(int room_number, int movie_id, String date, String period, double price) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "INSERT INTO  SCREENING(room_number,movie_id,date,period,price) VALUES(";
             query += "'" + room_number + "'" + ",";
@@ -382,7 +389,7 @@ public class CenturyModel {
     //Update Screening by Id
     public static void updateScreening(int id, int room_number, int movie_id, String date, String period, double price) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "UPDATE SCREENING SET room_number = " + "'" + room_number + "'" + ",";
             query += "movie_id = " + "'" + movie_id + "'" + ",";
@@ -402,7 +409,7 @@ public class CenturyModel {
     public static ArrayList<Screening> getAllScreening() {
         ArrayList<Screening> allScreenings = new ArrayList<>();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM SCREENING");
             while (rs.next()) {
@@ -427,7 +434,7 @@ public class CenturyModel {
     public static Screening getScreeningById(int id) {
         Screening screening = new Screening();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM SCREENING WHERE id = " + id);
 
@@ -449,7 +456,7 @@ public class CenturyModel {
     //Delete Movie by Id
     public static void deleteScreening(int id) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "DELETE FROM SCREENING WHERE id = " + id;
             int x = st.executeUpdate(query);
@@ -461,25 +468,56 @@ public class CenturyModel {
     }
 
     //Create Screening
-    public static void createReservation(int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
-            Statement st = conn.createStatement();
-            String query = "INSERT INTO  RESERVATION(screening_id,ticket_seller_id,reserved_seats) VALUES(";
-            query += "'" + screening_id + "'" + ",";
-            query += "'" + ticket_seller_id + "'" + ",";
-            int x = st.executeUpdate(query);
-            st.close();
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+   public static void createReservation(int screening_id, int ticket_seller_id, String reserved_seats) {
+    ArrayList<Reservation> createdReservations = new ArrayList<>();
+    
+    try {
+        Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM RESERVATION");
+
+        while (rs.next()) {
+            Reservation r = new Reservation();
+            r.setScreening_id(rs.getInt(1));
+            r.setTicket_seller_id(rs.getInt(2));
+            String reserved = rs.getString("reserved_seats");
+            String[] arr = reserved.split(",");
+            r.setReserved_seats(new ArrayList<>(Arrays.asList(arr)));
+            createdReservations.add(r);
         }
+
+        boolean reservationExists = false;
+
+        for (Reservation res : createdReservations) {
+            if (res.getScreening_id() == screening_id && res.getTicket_seller_id() == ticket_seller_id) {
+                res.getReserved_seats().add(reserved_seats);
+                String seats = String.join(",", res.getReserved_seats());
+                String query = "UPDATE RESERVATION SET reserved_seats = '" + seats + "' WHERE screening_id = " + screening_id;
+                st.executeUpdate(query);
+                reservationExists = true;
+                break;
+            }
+        }
+
+        if (!reservationExists) {
+            String query = "INSERT INTO RESERVATION(screening_id, ticket_seller_id, reserved_seats) VALUES (";
+            query += "'" + screening_id + "',";
+            query += "'" + ticket_seller_id + "',";
+            query += "'" + reserved_seats + "');";
+            st.executeUpdate(query);
+        }
+
+        st.close();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
     }
+}
 
     //Update Screening by Id
     public static void updateReservation(int id, int screening_id, int ticket_seller_id, ArrayList<Reservation> reserved_seats) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "UPDATE RESERVATION SET screening_id = " + screening_id + ",";
             query += "ticket_seller_id = " + ticket_seller_id + ",";
@@ -496,7 +534,7 @@ public class CenturyModel {
     public static ArrayList<Reservation> getAllReservation() {
         ArrayList<Reservation> allReservations = new ArrayList<>();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM SCREENING");
             while (rs.next()) {
@@ -517,7 +555,7 @@ public class CenturyModel {
     public static Reservation getReservationById(int id) {
         Reservation reservation = new Reservation();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM SCREENING WHERE id = " + id);
 
@@ -536,7 +574,7 @@ public class CenturyModel {
     //Delete Movie by Id
     public static void deleteReservation(int id) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/CENTURY_CINEMA", "mohammed", "Nebil1053");
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
             String query = "DELETE FROM RESERVATION WHERE id = " + id;
             int x = st.executeUpdate(query);
@@ -546,13 +584,142 @@ public class CenturyModel {
             System.out.println(e.getMessage());
         }
     }
+    
+    public static  ArrayList<Screening> getAllScreeningsOnDate(String date) {
+        ArrayList<Screening> allScreenings = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM SCREENING WHERE date = '" + date + "';");
+            while (rs.next()) {
+                Screening screening = new Screening();
+                screening.setId(rs.getInt(1));
+                screening.setRoom_number(rs.getInt(2));
+                screening.setMovie_id(rs.getInt(3));
+                screening.setDate(rs.getString(4));
+                screening.setPeriod(rs.getString(5));
+                screening.setPrice(rs.getDouble(6));
+                allScreenings.add(screening);
+            }
+            st.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return allScreenings;
+    }
+
+    public static ArrayList<String> getAllUnreservedSeatsForScreenings(int id) {
+        ArrayList<String> unReservedSeatsList = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+            Statement st = conn.createStatement();
+
+            //getting all reserved seats
+            ResultSet rs = st.executeQuery("SELECT reserved_seats FROM RESERVATION WHERE screening_id = " + id + ";");
+            ArrayList<String> reservedSeatsList = new ArrayList<>();
+            while (rs.next()) {
+                String reservedSeats = rs.getString("reserved_seats");
+                String[] seats = reservedSeats.split(","); // Split seats by comma
+                for (String seat : seats) {
+                    reservedSeatsList.add(seat.trim()); // Remove leading/trailing spaces if needed
+                }
+            }
+
+            //getting room id for screening
+            int roomId = getRoomIdForScreening(id);
+            
+            //getting room size
+            rs = st.executeQuery("SELECT num_rows, num_columns FROM ROOM WHERE room_number = " + roomId);
+            rs.next();
+            int rows = rs.getInt("num_rows");
+            int cols = rs.getInt("num_columns");
+
+            //getting unreserved seat names 
+            for (int row = 1; row <= rows; row++) {
+                for (int col = 1; col <= cols; col++) {
+                    String seatName = Character.toString((char) ('a' + row - 1)) + col;
+                    if (reservedSeatsList.contains(seatName)) {
+                        continue;
+                    }
+                    unReservedSeatsList.add(seatName);
+                }
+            }
+
+            st.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return unReservedSeatsList;
+    }
+    public static int getRoomIdForScreening(int id){
+        int roomId = -1;
+        try {
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery("SELECT room_number FROM SCREENING WHERE id = " + id + ";");
+            rs.next();
+            roomId = rs.getInt("room_number");
+
+            rs.close();
+            st.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return roomId;
+    }
+    //Updates the Ticket Seller password by their id
+    public static void updateTicketSellerPassword(int id, String oldPassword, String newPassword) {//todo: add email
+        try {
+            Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+            Statement st = conn.createStatement();
+            
+            // Check if the old password is correct
+            String checkQuery = "SELECT password FROM TICKET_SELLER WHERE id = " + id +";";
+            ResultSet rs = st.executeQuery(checkQuery);
+            if (rs.next()) {
+                String storedPassword = rs.getString("password");
+                if (storedPassword.trim().equals(oldPassword.trim())) {
+                    // Update the password
+                    String updateQuery = "UPDATE TICKET_SELLER SET password = '" + newPassword + "' WHERE id = " + id + ";";
+                    int x = st.executeUpdate(updateQuery);
+                    System.out.println("Password updated successfully.");
+                } else {
+                    System.out.println("Old password is incorrect. Password update failed.");
+                }
+            }
+        
+            rs.close();
+            st.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
-//        createScreening(1, 1, "2023/02/01", "lunch time", 20.00);
-        ArrayList<Screening> screenings = getAllScreening();
-        screenings.forEach(screen -> System.out.println(screen.getPeriod()));
-        Screening sc = getScreeningById(3);
-        System.out.println(sc.getDate());
-//        deleteScreening(2);
+        // Example usage of the create methods
+
+        // Create a new Ticket Seller
+//        CenturyModel.createTicketSeller("Jane Doe", "janedoe", "password123");
+//        // Create a new Room
+//        try {
+//            CenturyModel.createRoom(101, 100, 10, 10);
+//        } catch (CapacityException e) {
+//            System.out.println("CapacityException: The sum of rows and columns exceeds the capacity.");
+//        }
+//
+//        // Create a new Movie
+//        CenturyModel.createMovie("Movie Title", "Action", "Synopsis", "2023-06-11", 120, "English", "poster.jpg");
+//
+//        // Create a new Screening
+//        CenturyModel.createScreening(101, 1, "2023-06-13", "09:00 AM", 10.99);
+//
+//        // Create a new Ticket
+        CenturyModel.createReservation(1, 1, "A1");
+
     }
 }
