@@ -472,7 +472,7 @@ public class CenturyModel {
     ArrayList<Reservation> createdReservations = new ArrayList<>();
     
     try {
-        Connection conn = DriverManager.getConnection(database, databaseuser, databasePassword);
+        Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM RESERVATION");
 
