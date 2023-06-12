@@ -45,6 +45,7 @@ public class AdminPage extends javax.swing.JFrame {
         deleteRoom1 = new tg.trident.centurycinema.admin.DeleteRoom();
         deleteUser1 = new tg.trident.centurycinema.admin.DeleteUser();
         editMovie1 = new tg.trident.centurycinema.admin.EditMovie();
+        editRoom1 = new tg.trident.centurycinema.admin.EditRoom();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
@@ -56,6 +57,7 @@ public class AdminPage extends javax.swing.JFrame {
         deleteUser = new javax.swing.JMenuItem();
         rooms = new javax.swing.JMenu();
         addRoom = new javax.swing.JMenuItem();
+        editRoom = new javax.swing.JMenuItem();
         seeRooms = new javax.swing.JMenuItem();
         deleteRoom = new javax.swing.JMenuItem();
         deletemovie = new javax.swing.JMenu();
@@ -98,6 +100,7 @@ public class AdminPage extends javax.swing.JFrame {
         container.add(deleteRoom1, "card13");
         container.add(deleteUser1, "card14");
         container.add(editMovie1, "card15");
+        container.add(editRoom1, "card16");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -284,6 +287,25 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         rooms.add(addRoom);
+
+        editRoom.setBackground(new java.awt.Color(64, 61, 61));
+        editRoom.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        editRoom.setForeground(new java.awt.Color(255, 255, 255));
+        editRoom.setText("Edit Room");
+        editRoom.setBorder(null);
+        editRoom.setBorderPainted(false);
+        editRoom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editRoom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editRoom.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editRoom.setMargin(new java.awt.Insets(0, 6, 0, 6));
+        editRoom.setOpaque(true);
+        editRoom.setPreferredSize(new java.awt.Dimension(150, 40));
+        editRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editRoomActionPerformed(evt);
+            }
+        });
+        rooms.add(editRoom);
 
         seeRooms.setBackground(new java.awt.Color(64, 61, 61));
         seeRooms.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -558,6 +580,10 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
          changePanel(editMovie1);
     }//GEN-LAST:event_editMovieActionPerformed
+
+    private void editRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoomActionPerformed
+        changePanel(editRoom1);
+    }//GEN-LAST:event_editRoomActionPerformed
     public void changePanel(Component c){
            container.removeAll();
            container.repaint();
@@ -621,6 +647,8 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JMenu deletemovie;
     private javax.swing.JMenuItem editMovie;
     private tg.trident.centurycinema.admin.EditMovie editMovie1;
+    private javax.swing.JMenuItem editRoom;
+    private tg.trident.centurycinema.admin.EditRoom editRoom1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem logout;
