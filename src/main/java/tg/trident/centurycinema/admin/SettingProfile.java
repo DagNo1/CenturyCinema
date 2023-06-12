@@ -4,6 +4,8 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +17,7 @@ public class SettingProfile extends javax.swing.JPanel {
      */
     public SettingProfile() {
         initComponents();
+        update.setVisible(false);
     }
 
     /**
@@ -35,6 +38,8 @@ public class SettingProfile extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        redButton1 = new tg.trident.centurycinema.buttons.RedButton();
+        update = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -45,21 +50,26 @@ public class SettingProfile extends javax.swing.JPanel {
 
         firstName.setBackground(new java.awt.Color(58, 58, 58));
         firstName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        firstName.setForeground(new java.awt.Color(120, 120, 120));
+        firstName.setForeground(new java.awt.Color(255, 255, 255));
         firstName.setPreferredSize(new java.awt.Dimension(140, 38));
 
         lastName.setBackground(new java.awt.Color(58, 58, 58));
         lastName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        lastName.setForeground(new java.awt.Color(120, 120, 120));
+        lastName.setForeground(new java.awt.Color(255, 255, 255));
         lastName.setPreferredSize(new java.awt.Dimension(140, 38));
 
         userName.setBackground(new java.awt.Color(58, 58, 58));
         userName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        userName.setForeground(new java.awt.Color(120, 120, 120));
+        userName.setForeground(new java.awt.Color(255, 255, 255));
         userName.setPreferredSize(new java.awt.Dimension(315, 38));
 
         saveChanges.setText("Save Changes");
         saveChanges.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        saveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,6 +83,16 @@ public class SettingProfile extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("User name");
 
+        redButton1.setText("cancel");
+        redButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redButton1ActionPerformed(evt);
+            }
+        });
+
+        update.setForeground(new java.awt.Color(51, 255, 51));
+        update.setText("updated sucessfully");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +100,11 @@ public class SettingProfile extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(185, 185, 185)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(update)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(redButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -89,7 +113,7 @@ public class SettingProfile extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
+                                .addGap(45, 45, 45)
                                 .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -111,11 +135,33 @@ public class SettingProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(40, 40, 40)
-                .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(update)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(redButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesActionPerformed
+        // TODO add your handling code here:
+        String full_name = firstName.getText() + lastName.getText();
+        String user_name = userName.getText();
+        CenturyModel.updateAdminInfo(full_name, user_name);
+        update.setVisible(true);
+        
+    }//GEN-LAST:event_saveChangesActionPerformed
+
+    private void redButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redButton1ActionPerformed
+        // TODO add your handling code here:
+       firstName.setText("");
+       lastName.setText("");
+       userName.setText("");
+        update.setVisible(false);
+       
+    }//GEN-LAST:event_redButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -126,7 +172,9 @@ public class SettingProfile extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField lastName;
+    private tg.trident.centurycinema.buttons.RedButton redButton1;
     private tg.trident.centurycinema.buttons.GoldenButton saveChanges;
+    private javax.swing.JLabel update;
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }
