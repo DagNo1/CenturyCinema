@@ -49,7 +49,7 @@ public class CenturyModel {
         try {
             Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
             Statement st = conn.createStatement();
-            String query = "UPDATE ADMIN SET full_name = + " + "'" + full_name + "'" + ",";
+            String query = "UPDATE admin SET full_name = + " + "'" + full_name + "'" + ",";
             query += "user_name = " + "'" + user_name + "'" + ",";
             query += "password = " + "'" + password + "'" + ";";
             int x = st.executeUpdate(query);
@@ -63,13 +63,32 @@ public static void updateAdminPassword(String password) {
     try {
         Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
         Statement st = conn.createStatement();
-        String query = "UPDATE ADMIN SET password = '" + password + "'";
+        String query = "UPDATE admin SET password = '" + password + "'";
         int rowsUpdated = st.executeUpdate(query);
         
         if (rowsUpdated > 0) {
             System.out.println("Admin password updated successfully.");
         } else {
             System.out.println("Failed to update admin password.");
+        }
+        
+        st.close();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
+public static void updateAdminInfo(String full_name, String user_name) {
+    try {
+        Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+        Statement st = conn.createStatement();
+        String query = "UPDATE ADMIN SET first_name = '" + full_name + "', user_name = '" + user_name + "'";
+        int rowsUpdated = st.executeUpdate(query);
+        
+        if (rowsUpdated > 0) {
+            System.out.println("Admin information updated successfully.");
+        } else {
+            System.out.println("Failed to update admin information.");
         }
         
         st.close();
