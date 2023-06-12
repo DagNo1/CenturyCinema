@@ -44,6 +44,7 @@ public class AdminPage extends javax.swing.JFrame {
         deleteMovie1 = new tg.trident.centurycinema.admin.DeleteMovie();
         deleteRoom1 = new tg.trident.centurycinema.admin.DeleteRoom();
         deleteUser1 = new tg.trident.centurycinema.admin.DeleteUser();
+        editMovie1 = new tg.trident.centurycinema.admin.EditMovie();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
@@ -61,6 +62,7 @@ public class AdminPage extends javax.swing.JFrame {
         addMovie = new javax.swing.JMenuItem();
         deleteMovie = new javax.swing.JMenuItem();
         seeMovie = new javax.swing.JMenuItem();
+        editMovie = new javax.swing.JMenuItem();
         settings = new javax.swing.JMenu();
         profile = new javax.swing.JMenuItem();
         password = new javax.swing.JMenuItem();
@@ -95,6 +97,7 @@ public class AdminPage extends javax.swing.JFrame {
         container.add(deleteMovie1, "card12");
         container.add(deleteRoom1, "card13");
         container.add(deleteUser1, "card14");
+        container.add(editMovie1, "card15");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -391,6 +394,25 @@ public class AdminPage extends javax.swing.JFrame {
         });
         deletemovie.add(seeMovie);
 
+        editMovie.setBackground(new java.awt.Color(64, 61, 61));
+        editMovie.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        editMovie.setForeground(new java.awt.Color(255, 255, 255));
+        editMovie.setText("Edit Movie");
+        editMovie.setBorder(null);
+        editMovie.setBorderPainted(false);
+        editMovie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editMovie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editMovie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editMovie.setMargin(new java.awt.Insets(0, 6, 0, 6));
+        editMovie.setOpaque(true);
+        editMovie.setPreferredSize(new java.awt.Dimension(150, 40));
+        editMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMovieActionPerformed(evt);
+            }
+        });
+        deletemovie.add(editMovie);
+
         jMenuBar1.add(deletemovie);
 
         settings.setBackground(new java.awt.Color(37, 37, 37));
@@ -531,6 +553,11 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
          changePanel(deleteUser1);
     }//GEN-LAST:event_deleteUserActionPerformed
+
+    private void editMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMovieActionPerformed
+        // TODO add your handling code here:
+         changePanel(editMovie1);
+    }//GEN-LAST:event_editMovieActionPerformed
     public void changePanel(Component c){
            container.removeAll();
            container.repaint();
@@ -592,6 +619,8 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem deleteUser;
     private tg.trident.centurycinema.admin.DeleteUser deleteUser1;
     private javax.swing.JMenu deletemovie;
+    private javax.swing.JMenuItem editMovie;
+    private tg.trident.centurycinema.admin.EditMovie editMovie1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem logout;
