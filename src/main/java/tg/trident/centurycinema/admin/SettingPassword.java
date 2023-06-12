@@ -34,7 +34,6 @@ public class SettingPassword extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(37, 37, 37));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -42,19 +41,16 @@ public class SettingPassword extends javax.swing.JPanel {
         oldPassword.setBackground(new java.awt.Color(58, 58, 58));
         oldPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         oldPassword.setForeground(new java.awt.Color(120, 120, 120));
-        oldPassword.setText("Enter old password");
         oldPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         newPassword.setBackground(new java.awt.Color(58, 58, 58));
         newPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         newPassword.setForeground(new java.awt.Color(120, 120, 120));
-        newPassword.setText("Enter new password");
         newPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         confrimPassword.setBackground(new java.awt.Color(58, 58, 58));
         confrimPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         confrimPassword.setForeground(new java.awt.Color(120, 120, 120));
-        confrimPassword.setText("Re-enter your new password");
         confrimPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         saveChanges.setText("Save Changes");
@@ -73,17 +69,6 @@ public class SettingPassword extends javax.swing.JPanel {
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Confirm Password");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,8 +92,7 @@ public class SettingPassword extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(69, 69, 69)
                                 .addComponent(jLabel1))
                             .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,10 +102,8 @@ public class SettingPassword extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(111, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +129,6 @@ public class SettingPassword extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField newPassword;
     private javax.swing.JTextField oldPassword;
     private tg.trident.centurycinema.buttons.GoldenButton saveChanges;

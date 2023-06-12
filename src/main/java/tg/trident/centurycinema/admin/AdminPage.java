@@ -4,6 +4,8 @@
  */
 package tg.trident.centurycinema.admin;
 
+import java.awt.Component;
+
 /**
  *
  * @author dagim
@@ -15,6 +17,7 @@ public class AdminPage extends javax.swing.JFrame {
      */
     public AdminPage() {
         initComponents();
+         changePanel(dashboard1);
     }
 
     /**
@@ -27,16 +30,29 @@ public class AdminPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
+        container = new javax.swing.JPanel();
+        addMovie2 = new tg.trident.centurycinema.admin.AddMovie();
+        addRooms1 = new tg.trident.centurycinema.admin.AddRooms();
+        dashboard1 = new tg.trident.centurycinema.admin.Dashboard();
+        seeRooms1 = new tg.trident.centurycinema.admin.SeeRooms();
+        settingPassword1 = new tg.trident.centurycinema.admin.SettingPassword();
+        settingProfile1 = new tg.trident.centurycinema.admin.SettingProfile();
+        ticketSellersUsers1 = new tg.trident.centurycinema.admin.TicketSellersUsers();
+        userAnalytics1 = new tg.trident.centurycinema.admin.UserAnalytics();
+        seeMovies1 = new tg.trident.centurycinema.admin.SeeMovies();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
+        mainPage = new javax.swing.JMenuItem();
         ticketSellers = new javax.swing.JMenu();
         users = new javax.swing.JMenuItem();
         userAnalytics = new javax.swing.JMenuItem();
         rooms = new javax.swing.JMenu();
         addRoom = new javax.swing.JMenuItem();
+        seeRooms = new javax.swing.JMenuItem();
         movies = new javax.swing.JMenu();
         addMovie = new javax.swing.JMenuItem();
+        seeMovie = new javax.swing.JMenuItem();
         settings = new javax.swing.JMenu();
         profile = new javax.swing.JMenuItem();
         password = new javax.swing.JMenuItem();
@@ -53,6 +69,18 @@ public class AdminPage extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        container.setBackground(new java.awt.Color(37, 37, 37));
+        container.setLayout(new java.awt.CardLayout());
+        container.add(addMovie2, "card2");
+        container.add(addRooms1, "card3");
+        container.add(dashboard1, "card4");
+        container.add(seeRooms1, "card5");
+        container.add(settingPassword1, "card6");
+        container.add(settingProfile1, "card7");
+        container.add(ticketSellersUsers1, "card8");
+        container.add(userAnalytics1, "card9");
+        container.add(seeMovies1, "card10");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -96,6 +124,25 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         dashboard.add(logout);
+
+        mainPage.setBackground(new java.awt.Color(64, 61, 61));
+        mainPage.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        mainPage.setForeground(new java.awt.Color(255, 255, 255));
+        mainPage.setText("MainPage");
+        mainPage.setBorder(null);
+        mainPage.setBorderPainted(false);
+        mainPage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mainPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mainPage.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        mainPage.setOpaque(true);
+        mainPage.setPreferredSize(new java.awt.Dimension(150, 40));
+        mainPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPageActionPerformed(evt);
+            }
+        });
+        dashboard.add(mainPage);
 
         jMenuBar1.add(dashboard);
         dashboard.getAccessibleContext().setAccessibleName("dashboard");
@@ -183,6 +230,25 @@ public class AdminPage extends javax.swing.JFrame {
         });
         rooms.add(addRoom);
 
+        seeRooms.setBackground(new java.awt.Color(64, 61, 61));
+        seeRooms.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        seeRooms.setForeground(new java.awt.Color(255, 255, 255));
+        seeRooms.setText("SeeRooms");
+        seeRooms.setBorder(null);
+        seeRooms.setBorderPainted(false);
+        seeRooms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        seeRooms.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        seeRooms.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        seeRooms.setMargin(new java.awt.Insets(0, 6, 0, 6));
+        seeRooms.setOpaque(true);
+        seeRooms.setPreferredSize(new java.awt.Dimension(150, 40));
+        seeRooms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seeRoomsActionPerformed(evt);
+            }
+        });
+        rooms.add(seeRooms);
+
         jMenuBar1.add(rooms);
 
         movies.setBackground(new java.awt.Color(37, 37, 37));
@@ -215,6 +281,25 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         movies.add(addMovie);
+
+        seeMovie.setBackground(new java.awt.Color(64, 61, 61));
+        seeMovie.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        seeMovie.setForeground(new java.awt.Color(255, 255, 255));
+        seeMovie.setText("SeeMovies");
+        seeMovie.setBorder(null);
+        seeMovie.setBorderPainted(false);
+        seeMovie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        seeMovie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        seeMovie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        seeMovie.setMargin(new java.awt.Insets(0, 6, 0, 6));
+        seeMovie.setOpaque(true);
+        seeMovie.setPreferredSize(new java.awt.Dimension(150, 40));
+        seeMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seeMovieActionPerformed(evt);
+            }
+        });
+        movies.add(seeMovie);
 
         jMenuBar1.add(movies);
 
@@ -277,11 +362,11 @@ public class AdminPage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -289,32 +374,61 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
+        changePanel(dashboard1);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersActionPerformed
         // TODO add your handling code here:
+        changePanel(ticketSellersUsers1);
     }//GEN-LAST:event_usersActionPerformed
 
     private void userAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userAnalyticsActionPerformed
         // TODO add your handling code here:
+        changePanel(userAnalytics1);
     }//GEN-LAST:event_userAnalyticsActionPerformed
 
     private void addRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomActionPerformed
         // TODO add your handling code here:
+        changePanel(addRooms1);
     }//GEN-LAST:event_addRoomActionPerformed
 
     private void addMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieActionPerformed
         // TODO add your handling code here:
+        changePanel(addMovie2);
     }//GEN-LAST:event_addMovieActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
         // TODO add your handling code here:
+        changePanel(settingProfile1);
     }//GEN-LAST:event_profileActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
+        changePanel(settingPassword1);
     }//GEN-LAST:event_passwordActionPerformed
 
+    private void mainPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageActionPerformed
+        // TODO add your handling code here:
+        changePanel(dashboard1);
+    }//GEN-LAST:event_mainPageActionPerformed
+
+    private void seeRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeRoomsActionPerformed
+        // TODO add your handling code here:
+        changePanel(seeRooms1);
+    }//GEN-LAST:event_seeRoomsActionPerformed
+
+    private void seeMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeMovieActionPerformed
+        // TODO add your handling code here:
+        changePanel(seeMovies1);
+    }//GEN-LAST:event_seeMovieActionPerformed
+    public void changePanel(Component c){
+           container.removeAll();
+           container.repaint();
+           container.revalidate();
+           container.add(c);
+           container.repaint();
+           container.revalidate();
+       }
     /**
      * @param args the command line arguments
      */
@@ -353,18 +467,31 @@ public class AdminPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addMovie;
+    private tg.trident.centurycinema.admin.AddMovie addMovie2;
     private javax.swing.JMenuItem addRoom;
+    private tg.trident.centurycinema.admin.AddRooms addRooms1;
+    private javax.swing.JPanel container;
     private javax.swing.JMenu dashboard;
+    private tg.trident.centurycinema.admin.Dashboard dashboard1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem logout;
+    private javax.swing.JMenuItem mainPage;
     private javax.swing.JMenu movies;
     private javax.swing.JMenuItem password;
     private javax.swing.JMenuItem profile;
     private javax.swing.JMenu rooms;
+    private javax.swing.JMenuItem seeMovie;
+    private tg.trident.centurycinema.admin.SeeMovies seeMovies1;
+    private javax.swing.JMenuItem seeRooms;
+    private tg.trident.centurycinema.admin.SeeRooms seeRooms1;
+    private tg.trident.centurycinema.admin.SettingPassword settingPassword1;
+    private tg.trident.centurycinema.admin.SettingProfile settingProfile1;
     private javax.swing.JMenu settings;
     private javax.swing.JMenu ticketSellers;
+    private tg.trident.centurycinema.admin.TicketSellersUsers ticketSellersUsers1;
     private javax.swing.JMenuItem userAnalytics;
+    private tg.trident.centurycinema.admin.UserAnalytics userAnalytics1;
     private javax.swing.JMenuItem users;
     // End of variables declaration//GEN-END:variables
 }
