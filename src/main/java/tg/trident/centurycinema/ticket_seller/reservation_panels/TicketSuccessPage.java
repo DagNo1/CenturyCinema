@@ -189,7 +189,7 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         room.setText("Room: ");
 
         Print.setBackground(new java.awt.Color(207, 145, 18));
-        Print.setForeground(new java.awt.Color(255, 255, 255));
+        Print.setForeground(new java.awt.Color(207, 145, 18));
         Print.setText("Print Ticket");
         Print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
