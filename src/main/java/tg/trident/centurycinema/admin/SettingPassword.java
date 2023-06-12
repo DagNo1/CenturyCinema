@@ -4,6 +4,8 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +17,9 @@ public class SettingPassword extends javax.swing.JPanel {
      */
     public SettingPassword() {
         initComponents();
+        incorrect.setVisible(false);
+        correct.setVisible(false);
+        checker.setVisible(false);
     }
 
     /**
@@ -34,7 +39,9 @@ public class SettingPassword extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        incorrect = new javax.swing.JLabel();
+        correct = new javax.swing.JLabel();
+        checker = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(37, 37, 37));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -42,23 +49,25 @@ public class SettingPassword extends javax.swing.JPanel {
         oldPassword.setBackground(new java.awt.Color(58, 58, 58));
         oldPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         oldPassword.setForeground(new java.awt.Color(120, 120, 120));
-        oldPassword.setText("Enter old password");
         oldPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         newPassword.setBackground(new java.awt.Color(58, 58, 58));
         newPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         newPassword.setForeground(new java.awt.Color(120, 120, 120));
-        newPassword.setText("Enter new password");
         newPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         confrimPassword.setBackground(new java.awt.Color(58, 58, 58));
         confrimPassword.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         confrimPassword.setForeground(new java.awt.Color(120, 120, 120));
-        confrimPassword.setText("Re-enter your new password");
         confrimPassword.setPreferredSize(new java.awt.Dimension(315, 38));
 
         saveChanges.setText("Save Changes");
         saveChanges.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        saveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,16 +83,14 @@ public class SettingPassword extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Confirm Password");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-        );
+        incorrect.setForeground(new java.awt.Color(255, 51, 51));
+        incorrect.setText("incorrect password");
+
+        correct.setForeground(new java.awt.Color(51, 255, 51));
+        correct.setText("successfull updated");
+
+        checker.setForeground(new java.awt.Color(255, 255, 0));
+        checker.setText("passwords must match");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -92,7 +99,13 @@ public class SettingPassword extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checker)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(incorrect)
+                        .addGap(8, 8, 8)
+                        .addComponent(correct)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -107,21 +120,18 @@ public class SettingPassword extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(69, 69, 69)
                                 .addComponent(jLabel1))
                             .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(111, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,20 +144,48 @@ public class SettingPassword extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(36, 36, 36)
-                .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checker)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(incorrect)
+                    .addComponent(correct))
+                .addGap(85, 85, 85))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void saveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesActionPerformed
+        // TODO add your handling code here:
+        String OldPassword =CenturyModel.getAdmin().getPassword();
+        String newpassword = newPassword.getText();
+        String confrimpassword = confrimPassword.getText();
+        String checkPassword = oldPassword.getText();
+        if(checkPassword.equals(OldPassword)){
+            if(newpassword.equals(confrimpassword)){
+                CenturyModel.updateAdminPassword( newpassword);
+            correct.setVisible(true);
+            }else{
+               checker.setVisible(true);
+            }
+            
+            
+        }else{
+            incorrect.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_saveChangesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel checker;
     private javax.swing.JTextField confrimPassword;
+    private javax.swing.JLabel correct;
+    private javax.swing.JLabel incorrect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField newPassword;
     private javax.swing.JTextField oldPassword;
     private tg.trident.centurycinema.buttons.GoldenButton saveChanges;

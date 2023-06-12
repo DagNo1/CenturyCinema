@@ -4,8 +4,14 @@
  */
 package tg.trident.centurycinema.ticket_seller.reservation_panels;
 
+import Model.CenturyModel;
+import Model.Movie;
+import Model.Screening;
+import Model.TicketSeller;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import tg.trident.centurycinema.CenturyCinema;
 import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
 
 /**
@@ -13,6 +19,9 @@ import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
  * @author dagim
  */
 public class TicketSuccessPage extends javax.swing.JPanel {
+    
+    private int screeningId;
+    private String selectedSeats;
 
     /**
      * Creates new form TicketSuccessPage
@@ -21,6 +30,45 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void setData(int screeningId, ArrayList<String> selectedSeats){
+        
+        System.out.print("3");
+        this.screeningId = screeningId;
+        this.selectedSeats = "";
+        
+        //make string for selected seats
+        for (String item : selectedSeats) {
+             this.selectedSeats  += item + ", ";
+        }
+        if(this.selectedSeats .length() > 1)
+            this.selectedSeats  = this.selectedSeats .substring(0, this.selectedSeats .length() - 2);
+     
+        
+        Screening screening = CenturyModel.getScreeningById(screeningId);
+        Movie movie = CenturyModel.getMovieById(screening.getMovie_id());
+        TicketSeller ts = CenturyModel.getTicketSellerById(CenturyCinema.id);
+        
+        this.movie.setText("Movie: " + movie.getTitle() + "(" + movie.getRelease_date() + ") "+ movie.getDuration() + " minutes ");
+        Double totalPrise = screening.getPrice() * selectedSeats.size();
+        this.prise.setText("Prise: " + totalPrise);
+        this.room.setText("Room: " + screening.getRoom_number());
+        this.screening.setText("Screening: " + screening.getPeriod());
+        this.seats.setText("Seats: " + this.selectedSeats);
+        this.seller.setText("Ticket Seller: " + ts.getUser_name());
+        
+                System.out.print("4");
+        
+    }
+    public void clearData(){
+         this.movie.setText("Movie: ");
+        this.prise.setText("Prise: ");
+        this.room.setText("Room: ");
+        this.screening.setText("Screening: ");
+        this.seats.setText("Seats: " );
+        this.seller.setText("Ticket Seller: ");
+        screeningId = -1;
+        selectedSeats= "";
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,9 +82,12 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        selectedSeatsText = new javax.swing.JLabel();
-        priseText = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        movie = new javax.swing.JLabel();
+        prise = new javax.swing.JLabel();
+        seller = new javax.swing.JLabel();
+        seats = new javax.swing.JLabel();
+        screening = new javax.swing.JLabel();
+        room = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -72,33 +123,45 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         jLabel2.setText("Ticket successfully booked");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        selectedSeatsText.setForeground(new java.awt.Color(255, 255, 255));
-        selectedSeatsText.setText("Seats: ");
+        movie.setForeground(new java.awt.Color(255, 255, 255));
+        movie.setText("Movie: ");
 
-        priseText.setForeground(new java.awt.Color(255, 255, 255));
-        priseText.setText("Prise:");
+        prise.setForeground(new java.awt.Color(255, 255, 255));
+        prise.setText("Prise:");
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Ticket Seller:");
+        seller.setForeground(new java.awt.Color(255, 255, 255));
+        seller.setText("Ticket Seller:");
+
+        seats.setForeground(new java.awt.Color(255, 255, 255));
+        seats.setText("Seats: ");
+
+        screening.setForeground(new java.awt.Color(255, 255, 255));
+        screening.setText("Screening: ");
+
+        room.setForeground(new java.awt.Color(255, 255, 255));
+        room.setText("Room: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(314, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2))
-                .addGap(269, 269, 269))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(128, 128, 128)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(selectedSeatsText, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(priseText, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(129, Short.MAX_VALUE)))
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2))
+                        .addGap(269, 269, 269))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(movie, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prise, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seller, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seats, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(screening, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,16 +170,19 @@ public class TicketSuccessPage extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(228, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(192, 192, 192)
-                    .addComponent(selectedSeatsText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(priseText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(100, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(movie, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(screening, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(seats, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(prise, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(seller, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -124,10 +190,13 @@ public class TicketSuccessPage extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel priseText;
-    private javax.swing.JLabel selectedSeatsText;
+    private javax.swing.JLabel movie;
+    private javax.swing.JLabel prise;
+    private javax.swing.JLabel room;
+    private javax.swing.JLabel screening;
+    private javax.swing.JLabel seats;
+    private javax.swing.JLabel seller;
     // End of variables declaration//GEN-END:variables
 }
