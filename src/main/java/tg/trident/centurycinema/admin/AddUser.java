@@ -46,6 +46,7 @@ public class AddUser extends javax.swing.JPanel {
         success = new javax.swing.JLabel();
         incorrect = new javax.swing.JLabel();
         topic = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(37, 37, 37));
 
@@ -107,6 +108,8 @@ public class AddUser extends javax.swing.JPanel {
         topic.setForeground(new java.awt.Color(255, 255, 255));
         topic.setText("use the same password to register !!!!!!");
 
+        jLabel6.setText("!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +142,9 @@ public class AddUser extends javax.swing.JPanel {
                                     .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(confrimpassword, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addGap(18, 18, 18)
-                .addComponent(incorrect)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(incorrect)
+                    .addComponent(jLabel6))
                 .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -155,7 +160,9 @@ public class AddUser extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(firstname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,6 +201,9 @@ public class AddUser extends javax.swing.JPanel {
         String full_name = firstname.getText() + lastname.getText();
         if(password.getText().trim().equals(confrimpassword.getText().trim())){
             String Password = password.getText();
+            if(full_name == ""&& user_name== ""&& Password==""){
+                
+            }
             CenturyModel.createTicketSeller(full_name, user_name, Password);
                incorrect.setVisible(false);
         topic.setVisible(false);
@@ -231,6 +241,7 @@ public class AddUser extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField lastname;
     private javax.swing.JTextField password;
     private javax.swing.JLabel success;

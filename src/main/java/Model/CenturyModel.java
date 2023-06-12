@@ -59,6 +59,25 @@ public class CenturyModel {
             System.out.println(e.getMessage());
         }
     }
+public static void updateAdminPassword(String password) {
+    try {
+        Connection conn = DriverManager.getConnection(database, databaseUser, databasePassword);
+        Statement st = conn.createStatement();
+        String query = "UPDATE ADMIN SET password = '" + password + "'";
+        int rowsUpdated = st.executeUpdate(query);
+        
+        if (rowsUpdated > 0) {
+            System.out.println("Admin password updated successfully.");
+        } else {
+            System.out.println("Failed to update admin password.");
+        }
+        
+        st.close();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
 
     //Gets all the Ticket Sellers
     public static ArrayList<TicketSeller> getAllTicketSellers() {

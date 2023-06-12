@@ -4,6 +4,8 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +17,9 @@ public class SettingPassword extends javax.swing.JPanel {
      */
     public SettingPassword() {
         initComponents();
+        incorrect.setVisible(false);
+        correct.setVisible(false);
+        checker.setVisible(false);
     }
 
     /**
@@ -34,6 +39,9 @@ public class SettingPassword extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        incorrect = new javax.swing.JLabel();
+        correct = new javax.swing.JLabel();
+        checker = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(37, 37, 37));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -55,6 +63,11 @@ public class SettingPassword extends javax.swing.JPanel {
 
         saveChanges.setText("Save Changes");
         saveChanges.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        saveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,6 +83,15 @@ public class SettingPassword extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Confirm Password");
 
+        incorrect.setForeground(new java.awt.Color(255, 51, 51));
+        incorrect.setText("incorrect password");
+
+        correct.setForeground(new java.awt.Color(51, 255, 51));
+        correct.setText("successfull updated");
+
+        checker.setForeground(new java.awt.Color(255, 255, 0));
+        checker.setText("passwords must match");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +99,13 @@ public class SettingPassword extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checker)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(incorrect)
+                        .addGap(8, 8, 8)
+                        .addComponent(correct)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -97,7 +125,7 @@ public class SettingPassword extends javax.swing.JPanel {
                             .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,15 +144,44 @@ public class SettingPassword extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(confrimPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(36, 36, 36)
-                .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checker)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(incorrect)
+                    .addComponent(correct))
+                .addGap(85, 85, 85))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void saveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesActionPerformed
+        // TODO add your handling code here:
+        String OldPassword =CenturyModel.getAdmin().getPassword();
+        String newpassword = newPassword.getText();
+        String confrimpassword = confrimPassword.getText();
+        String checkPassword = oldPassword.getText();
+        if(checkPassword.equals(OldPassword)){
+            if(newpassword.equals(confrimpassword)){
+                CenturyModel.updateAdminPassword( newpassword);
+            correct.setVisible(true);
+            }else{
+               checker.setVisible(true);
+            }
+            
+            
+        }else{
+            incorrect.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_saveChangesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel checker;
     private javax.swing.JTextField confrimPassword;
+    private javax.swing.JLabel correct;
+    private javax.swing.JLabel incorrect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
