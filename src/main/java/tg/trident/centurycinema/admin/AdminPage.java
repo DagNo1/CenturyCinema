@@ -40,12 +40,14 @@ public class AdminPage extends javax.swing.JFrame {
         ticketSellersUsers1 = new tg.trident.centurycinema.admin.TicketSellersUsers();
         userAnalytics1 = new tg.trident.centurycinema.admin.UserAnalytics();
         seeMovies1 = new tg.trident.centurycinema.admin.SeeMovies();
+        addUser1 = new tg.trident.centurycinema.admin.AddUser();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
         mainPage = new javax.swing.JMenuItem();
         ticketSellers = new javax.swing.JMenu();
         users = new javax.swing.JMenuItem();
+        addUser = new javax.swing.JMenuItem();
         userAnalytics = new javax.swing.JMenuItem();
         rooms = new javax.swing.JMenu();
         addRoom = new javax.swing.JMenuItem();
@@ -81,6 +83,7 @@ public class AdminPage extends javax.swing.JFrame {
         container.add(ticketSellersUsers1, "card8");
         container.add(userAnalytics1, "card9");
         container.add(seeMovies1, "card10");
+        container.add(addUser1, "card11");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -177,6 +180,25 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         ticketSellers.add(users);
+
+        addUser.setBackground(new java.awt.Color(64, 61, 61));
+        addUser.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        addUser.setForeground(new java.awt.Color(255, 255, 255));
+        addUser.setText("AddUser'");
+        addUser.setBorder(null);
+        addUser.setBorderPainted(false);
+        addUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addUser.setMargin(new java.awt.Insets(0, 10, 0, 6));
+        addUser.setOpaque(true);
+        addUser.setPreferredSize(new java.awt.Dimension(150, 40));
+        addUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserActionPerformed(evt);
+            }
+        });
+        ticketSellers.add(addUser);
 
         userAnalytics.setBackground(new java.awt.Color(64, 61, 61));
         userAnalytics.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -421,6 +443,11 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         changePanel(seeMovies1);
     }//GEN-LAST:event_seeMovieActionPerformed
+
+    private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
+        // TODO add your handling code here:
+         changePanel(addUser1);
+    }//GEN-LAST:event_addUserActionPerformed
     public void changePanel(Component c){
            container.removeAll();
            container.repaint();
@@ -470,6 +497,8 @@ public class AdminPage extends javax.swing.JFrame {
     private tg.trident.centurycinema.admin.AddMovie addMovie2;
     private javax.swing.JMenuItem addRoom;
     private tg.trident.centurycinema.admin.AddRooms addRooms1;
+    private javax.swing.JMenuItem addUser;
+    private tg.trident.centurycinema.admin.AddUser addUser1;
     private javax.swing.JPanel container;
     private javax.swing.JMenu dashboard;
     private tg.trident.centurycinema.admin.Dashboard dashboard1;
