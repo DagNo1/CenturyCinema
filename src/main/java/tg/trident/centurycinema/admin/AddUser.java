@@ -202,7 +202,8 @@ public class AddUser extends javax.swing.JPanel {
         if(password.getText().trim().equals(confrimpassword.getText().trim())){
             String Password = password.getText();
             if(full_name == ""&& user_name== ""&& Password==""){
-                
+                success.setText("it can not be null");
+                success.setVisible(true);
             }
             CenturyModel.createTicketSeller(full_name, user_name, Password);
                incorrect.setVisible(false);

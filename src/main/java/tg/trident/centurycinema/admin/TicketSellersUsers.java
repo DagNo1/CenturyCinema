@@ -4,6 +4,11 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+import Model.TicketSeller;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +20,12 @@ public class TicketSellersUsers extends javax.swing.JPanel {
      */
     public TicketSellersUsers() {
         initComponents();
+        ArrayList<TicketSeller> sellers = CenturyModel.getAllTicketSellers();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        for(TicketSeller item: sellers){
+            String tData[]={item.getFull_name(),item.getUser_name()};
+            model.addRow(tData);
+        }
     }
 
     /**
@@ -68,6 +79,7 @@ public class TicketSellersUsers extends javax.swing.JPanel {
         goldenButton2.setText("Add");
 
         jTable1.setBackground(new java.awt.Color(37, 37, 37));
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}

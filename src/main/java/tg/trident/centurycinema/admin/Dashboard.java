@@ -4,6 +4,12 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+import Model.Movie;
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +21,71 @@ public class Dashboard extends javax.swing.JPanel {
      */
     public Dashboard() {
         initComponents();
+        ArrayList<Movie> movies = CenturyModel.getAllMovies();
+        ArrayList<String> todayImageUrls = new ArrayList<>();
+        ArrayList<String> title = new ArrayList<>();
+        ArrayList<String> subtitle = new ArrayList<>();
+        movies.forEach(movie -> {
+            todayImageUrls.add(movie.getPoster());
+        });
+        movies.forEach(movie-> {
+            title.add(movie.getTitle());
+        });
+         movies.forEach(movie-> {
+          subtitle.add(movie.getGenre());
+        });
+        jEditorPane1.setContentType("text/html");
+        jEditorPane1.setText(generateHTMLCode(todayImageUrls,todayImageUrls,title,subtitle));      
+
+    }
+
+    private static String generateHTMLCode(ArrayList<String> todayImageUrls, ArrayList<String> tomorrowImageUrls,ArrayList<String> title ,ArrayList<String> subtitle) {
+        StringBuilder htmlBuilder = new StringBuilder();
+        htmlBuilder.append("<!DOCTYPE html>\n")
+                .append("<html lang=\"en\">\n")
+                .append("<head>\n")
+                .append("    <meta charset=\"UTF-8\">\n")
+                .append("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
+                .append("    <title>Document</title>\n")
+                .append("</head>\n")
+                .append("<body>\n")
+                .append("    <table>\n")
+                .append("        <tr>\n")
+                .append("            <td colspan=\"2\"><h1>TODAY'S WATCH LIST</h1></td>\n")
+                .append("        </tr>\n")
+                .append("        <tr>\n");
+
+        for (String imageUrl : todayImageUrls) {
+            htmlBuilder
+                    .append("            <td>\n")
+                    .append("                <img src=\"").append(imageUrl).append("\">\n")
+                    .append("                <h1>").append(title).append("</h1>\n")
+                    .append("                <h3>").append(subtitle).append("</h3>\n")
+                    .append("            </td>\n");
+            System.out.println(imageUrl);
+        }
+        htmlBuilder.append("        </tr>\n");
+
+        htmlBuilder.append("        <tr>\n")
+                .append("            <td colspan=\"2\"><h1>TOMORROW'S WATCH LIST</h1></td>\n")
+                .append("        </tr>\n")
+                .append("        <tr>\n");
+
+        for (String imageUrl : tomorrowImageUrls) {
+            htmlBuilder
+                    .append("            <td>\n")
+                    .append("                <img src=\"").append(imageUrl).append("\">\n")
+                    .append("                <h1>").append(title).append("</h1>\n")
+                   .append("                <h3>").append(subtitle).append("</h3>\n")
+                    .append("            </td>\n");
+        }
+        htmlBuilder.append("        </tr>\n");
+
+        htmlBuilder.append("    </table>\n")
+                .append("</body>\n")
+                .append("</html>");
+
+        return htmlBuilder.toString();
     }
 
     /**
