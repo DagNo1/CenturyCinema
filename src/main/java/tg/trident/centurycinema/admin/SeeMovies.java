@@ -4,6 +4,11 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+import Model.Movie;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +20,12 @@ public class SeeMovies extends javax.swing.JPanel {
      */
     public SeeMovies() {
         initComponents();
+        ArrayList<Movie> movies = CenturyModel.getAllMovies();
+        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
+         for (Movie item : movies) {
+             String tData[] = {item.getTitle(),item.getGenre(),item.getSynopsis(),item.getRelease_date(),item.getDuration(),item.getLanguage(),item.getPoster()};
+             model.addRow(tData);
+        }
     }
 
     /**
@@ -26,6 +37,7 @@ public class SeeMovies extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -51,6 +63,8 @@ public class SeeMovies extends javax.swing.JPanel {
 
         goldenButton1.setText("search");
 
+        jTable1.setBackground(new java.awt.Color(37, 37, 37));
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null}
@@ -123,6 +137,7 @@ public class SeeMovies extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private tg.trident.centurycinema.buttons.RedButton redButton1;
