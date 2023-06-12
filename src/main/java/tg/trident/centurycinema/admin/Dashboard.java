@@ -7,7 +7,6 @@ package tg.trident.centurycinema.admin;
 import Model.CenturyModel;
 import Model.Movie;
 import java.awt.List;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,9 +21,21 @@ public class Dashboard extends javax.swing.JPanel {
      */
     public Dashboard() {
         initComponents();
-//        ArrayList<Movie> movies = CenturyModel.getAllScreeningsOnDate(Date.from(LocalDate.now()));
+        ArrayList<Movie> movies = CenturyModel.getAllMovies();
+        ArrayList<String> todayImageUrls = new ArrayList<>();
+        ArrayList<String> title = new ArrayList<>();
+        ArrayList<String> subtitle = new ArrayList<>();
+        movies.forEach(movie -> {
+            todayImageUrls.add(movie.getPoster());
+        });
+        movies.forEach(movie-> {
+            title.add(movie.getTitle());
+        });
+         movies.forEach(movie-> {
+          subtitle.add(movie.getGenre());
+        });
         jEditorPane1.setContentType("text/html");
-//        jEditorPane1.setText(generateHTMLCode(todayImageUrls,todayImageUrls,title,subtitle));      
+        jEditorPane1.setText(generateHTMLCode(todayImageUrls,todayImageUrls,title,subtitle));      
 
     }
 
@@ -33,7 +44,7 @@ public class Dashboard extends javax.swing.JPanel {
         htmlBuilder.append("<!DOCTYPE html>\n")
                 .append("<html lang=\"en\">\n")
                 .append("<head>\n")
-                .append("    <meta charset=\"UrrayList<String> todayImageUrls, ArrayList<String> tomorrowImageUrls,TF-8\">\n")
+                .append("    <meta charset=\"UTF-8\">\n")
                 .append("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
                 .append("    <title>Document</title>\n")
                 .append("</head>\n")

@@ -42,6 +42,8 @@ public class AdminPage extends javax.swing.JFrame {
         seeMovies1 = new tg.trident.centurycinema.admin.SeeMovies();
         addUser1 = new tg.trident.centurycinema.admin.AddUser();
         deleteMovie1 = new tg.trident.centurycinema.admin.DeleteMovie();
+        deleteRoom1 = new tg.trident.centurycinema.admin.DeleteRoom();
+        deleteUser1 = new tg.trident.centurycinema.admin.DeleteUser();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
@@ -50,9 +52,11 @@ public class AdminPage extends javax.swing.JFrame {
         users = new javax.swing.JMenuItem();
         addUser = new javax.swing.JMenuItem();
         userAnalytics = new javax.swing.JMenuItem();
+        deleteUser = new javax.swing.JMenuItem();
         rooms = new javax.swing.JMenu();
         addRoom = new javax.swing.JMenuItem();
         seeRooms = new javax.swing.JMenuItem();
+        deleteRoom = new javax.swing.JMenuItem();
         deletemovie = new javax.swing.JMenu();
         addMovie = new javax.swing.JMenuItem();
         deleteMovie = new javax.swing.JMenuItem();
@@ -89,6 +93,8 @@ public class AdminPage extends javax.swing.JFrame {
 
         deleteMovie1.setForeground(new java.awt.Color(255, 255, 255));
         container.add(deleteMovie1, "card12");
+        container.add(deleteRoom1, "card13");
+        container.add(deleteUser1, "card14");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -224,6 +230,25 @@ public class AdminPage extends javax.swing.JFrame {
         });
         ticketSellers.add(userAnalytics);
 
+        deleteUser.setBackground(new java.awt.Color(64, 61, 61));
+        deleteUser.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        deleteUser.setForeground(new java.awt.Color(255, 255, 255));
+        deleteUser.setText("DeleteUser");
+        deleteUser.setBorder(null);
+        deleteUser.setBorderPainted(false);
+        deleteUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deleteUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deleteUser.setMargin(new java.awt.Insets(0, 10, 0, 6));
+        deleteUser.setOpaque(true);
+        deleteUser.setPreferredSize(new java.awt.Dimension(150, 40));
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserActionPerformed(evt);
+            }
+        });
+        ticketSellers.add(deleteUser);
+
         jMenuBar1.add(ticketSellers);
 
         rooms.setBackground(new java.awt.Color(37, 37, 37));
@@ -275,6 +300,25 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         rooms.add(seeRooms);
+
+        deleteRoom.setBackground(new java.awt.Color(64, 61, 61));
+        deleteRoom.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        deleteRoom.setForeground(new java.awt.Color(255, 255, 255));
+        deleteRoom.setText("DeleteRooms");
+        deleteRoom.setBorder(null);
+        deleteRoom.setBorderPainted(false);
+        deleteRoom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteRoom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deleteRoom.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deleteRoom.setMargin(new java.awt.Insets(0, 6, 0, 6));
+        deleteRoom.setOpaque(true);
+        deleteRoom.setPreferredSize(new java.awt.Dimension(150, 40));
+        deleteRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteRoomActionPerformed(evt);
+            }
+        });
+        rooms.add(deleteRoom);
 
         jMenuBar1.add(rooms);
 
@@ -477,6 +521,16 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
          changePanel(deleteMovie1);
     }//GEN-LAST:event_deleteMovieActionPerformed
+
+    private void deleteRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRoomActionPerformed
+        // TODO add your handling code here:
+        changePanel(deleteRoom1);
+    }//GEN-LAST:event_deleteRoomActionPerformed
+
+    private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
+        // TODO add your handling code here:
+         changePanel(deleteUser1);
+    }//GEN-LAST:event_deleteUserActionPerformed
     public void changePanel(Component c){
            container.removeAll();
            container.repaint();
@@ -533,6 +587,10 @@ public class AdminPage extends javax.swing.JFrame {
     private tg.trident.centurycinema.admin.Dashboard dashboard1;
     private javax.swing.JMenuItem deleteMovie;
     private tg.trident.centurycinema.admin.DeleteMovie deleteMovie1;
+    private javax.swing.JMenuItem deleteRoom;
+    private tg.trident.centurycinema.admin.DeleteRoom deleteRoom1;
+    private javax.swing.JMenuItem deleteUser;
+    private tg.trident.centurycinema.admin.DeleteUser deleteUser1;
     private javax.swing.JMenu deletemovie;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel4;
