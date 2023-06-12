@@ -4,6 +4,8 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CenturyModel;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +17,7 @@ public class AddMovie extends javax.swing.JPanel {
      */
     public AddMovie() {
         initComponents();
+         success.setVisible(false);
     }
 
     /**
@@ -27,21 +30,22 @@ public class AddMovie extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        title = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        genre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        synopsis = new javax.swing.JTextField();
+        releaseDate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        duration = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        language = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        goldenButton1 = new tg.trident.centurycinema.buttons.GoldenButton();
-        redButton1 = new tg.trident.centurycinema.buttons.RedButton();
+        poster = new javax.swing.JTextField();
+        add = new tg.trident.centurycinema.buttons.GoldenButton();
+        cancel = new tg.trident.centurycinema.buttons.RedButton();
+        success = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(37, 37, 37));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -49,47 +53,47 @@ public class AddMovie extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("title");
 
-        jTextField1.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setPreferredSize(new java.awt.Dimension(300, 32));
+        title.setBackground(new java.awt.Color(37, 37, 37));
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setPreferredSize(new java.awt.Dimension(300, 32));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("genre");
 
-        jTextField2.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setPreferredSize(new java.awt.Dimension(300, 32));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        genre.setBackground(new java.awt.Color(37, 37, 37));
+        genre.setForeground(new java.awt.Color(255, 255, 255));
+        genre.setPreferredSize(new java.awt.Dimension(300, 32));
+        genre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                genreActionPerformed(evt);
             }
         });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("synopsis");
 
-        jTextField3.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setPreferredSize(new java.awt.Dimension(300, 32));
+        synopsis.setBackground(new java.awt.Color(37, 37, 37));
+        synopsis.setForeground(new java.awt.Color(255, 255, 255));
+        synopsis.setPreferredSize(new java.awt.Dimension(300, 32));
 
-        jTextField4.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setPreferredSize(new java.awt.Dimension(300, 32));
+        releaseDate.setBackground(new java.awt.Color(37, 37, 37));
+        releaseDate.setForeground(new java.awt.Color(255, 255, 255));
+        releaseDate.setPreferredSize(new java.awt.Dimension(300, 32));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("release_date");
 
-        jTextField5.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setPreferredSize(new java.awt.Dimension(300, 32));
+        duration.setBackground(new java.awt.Color(37, 37, 37));
+        duration.setForeground(new java.awt.Color(255, 255, 255));
+        duration.setPreferredSize(new java.awt.Dimension(300, 32));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("duration");
 
-        jComboBox1.setBackground(new java.awt.Color(37, 37, 37));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "choose language", "English", "Amharic", "Spanish", "Japanese", "British", "Turkish", "Other" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(300, 32));
+        language.setBackground(new java.awt.Color(37, 37, 37));
+        language.setForeground(new java.awt.Color(255, 255, 255));
+        language.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "choose language", "English", "Amharic", "Spanish", "Japanese", "British", "Turkish", "Other" }));
+        language.setPreferredSize(new java.awt.Dimension(300, 32));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("language");
@@ -97,13 +101,26 @@ public class AddMovie extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("poster");
 
-        jTextField6.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setPreferredSize(new java.awt.Dimension(300, 32));
+        poster.setBackground(new java.awt.Color(37, 37, 37));
+        poster.setForeground(new java.awt.Color(255, 255, 255));
+        poster.setPreferredSize(new java.awt.Dimension(300, 32));
 
-        goldenButton1.setText("add");
+        add.setText("add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
 
-        redButton1.setText("cancel");
+        cancel.setText("cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
+
+        success.setForeground(new java.awt.Color(0, 255, 0));
+        success.setText("success fully added");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,19 +140,21 @@ public class AddMovie extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(genre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(synopsis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(releaseDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(duration, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(language, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(174, 174, 174))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(redButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(success)
+                        .addGap(32, 32, 32)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(goldenButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(187, 187, 187))))
         );
         layout.setVerticalGroup(
@@ -143,48 +162,88 @@ public class AddMovie extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(releaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(language, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(goldenButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(redButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(success))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void genreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_genreActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+        String Title = title.getText();
+        String Genre = genre.getText();
+        String Synopsis = synopsis.getText();
+        String RealeaseDate = releaseDate.getText();
+        int Duration = Integer.parseInt(duration.getText());
+        String Language = language.getSelectedItem().toString();
+        String Poster = poster.getText();
+        String FilePath = "/home/abelcosmic/lab execersises/CenturyCinema/src/main/java/tg/trident/centurycinema/images/"+Poster;
+      
+           
+       CenturyModel.createMovie(Title, Genre, Synopsis, RealeaseDate, Duration, Language, FilePath);
+        title.setText("");
+         genre.setText("");
+        synopsis.setText("");
+        releaseDate.setText("");
+       duration.setText("");
+       language.setSelectedItem(ABORT);
+        poster.setText("");
+        success.setVisible(true);
+        
+    }//GEN-LAST:event_addActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+          title.setText("");
+         genre.setText("");
+        synopsis.setText("");
+        releaseDate.setText("");
+       duration.setText("");
+       language.setSelectedItem(ABORT);
+        poster.setText("");
+         success.setVisible(false);
+        
+    }//GEN-LAST:event_cancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private tg.trident.centurycinema.buttons.GoldenButton goldenButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private tg.trident.centurycinema.buttons.GoldenButton add;
+    private tg.trident.centurycinema.buttons.RedButton cancel;
+    private javax.swing.JTextField duration;
+    private javax.swing.JTextField genre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -192,12 +251,11 @@ public class AddMovie extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private tg.trident.centurycinema.buttons.RedButton redButton1;
+    private javax.swing.JComboBox<String> language;
+    private javax.swing.JTextField poster;
+    private javax.swing.JTextField releaseDate;
+    private javax.swing.JLabel success;
+    private javax.swing.JTextField synopsis;
+    private javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
 }
