@@ -41,6 +41,7 @@ public class AdminPage extends javax.swing.JFrame {
         userAnalytics1 = new tg.trident.centurycinema.admin.UserAnalytics();
         seeMovies1 = new tg.trident.centurycinema.admin.SeeMovies();
         addUser1 = new tg.trident.centurycinema.admin.AddUser();
+        deleteMovie1 = new tg.trident.centurycinema.admin.DeleteMovie();
         jMenuBar1 = new javax.swing.JMenuBar();
         dashboard = new javax.swing.JMenu();
         logout = new javax.swing.JMenuItem();
@@ -52,8 +53,9 @@ public class AdminPage extends javax.swing.JFrame {
         rooms = new javax.swing.JMenu();
         addRoom = new javax.swing.JMenuItem();
         seeRooms = new javax.swing.JMenuItem();
-        movies = new javax.swing.JMenu();
+        deletemovie = new javax.swing.JMenu();
         addMovie = new javax.swing.JMenuItem();
+        deleteMovie = new javax.swing.JMenuItem();
         seeMovie = new javax.swing.JMenuItem();
         settings = new javax.swing.JMenu();
         profile = new javax.swing.JMenuItem();
@@ -84,6 +86,9 @@ public class AdminPage extends javax.swing.JFrame {
         container.add(userAnalytics1, "card9");
         container.add(seeMovies1, "card10");
         container.add(addUser1, "card11");
+
+        deleteMovie1.setForeground(new java.awt.Color(255, 255, 255));
+        container.add(deleteMovie1, "card12");
 
         jMenuBar1.setBackground(new java.awt.Color(64, 61, 61));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -273,17 +278,17 @@ public class AdminPage extends javax.swing.JFrame {
 
         jMenuBar1.add(rooms);
 
-        movies.setBackground(new java.awt.Color(37, 37, 37));
-        movies.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        movies.setForeground(new java.awt.Color(255, 255, 255));
-        movies.setText("Movies");
-        movies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        movies.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        movies.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        movies.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        movies.setMargin(new java.awt.Insets(3, 10, 3, 6));
-        movies.setPreferredSize(new java.awt.Dimension(75, 23));
-        movies.setRolloverEnabled(false);
+        deletemovie.setBackground(new java.awt.Color(37, 37, 37));
+        deletemovie.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        deletemovie.setForeground(new java.awt.Color(255, 255, 255));
+        deletemovie.setText("Movies");
+        deletemovie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deletemovie.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        deletemovie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deletemovie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deletemovie.setMargin(new java.awt.Insets(3, 10, 3, 6));
+        deletemovie.setPreferredSize(new java.awt.Dimension(75, 23));
+        deletemovie.setRolloverEnabled(false);
 
         addMovie.setBackground(new java.awt.Color(64, 61, 61));
         addMovie.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -302,7 +307,26 @@ public class AdminPage extends javax.swing.JFrame {
                 addMovieActionPerformed(evt);
             }
         });
-        movies.add(addMovie);
+        deletemovie.add(addMovie);
+
+        deleteMovie.setBackground(new java.awt.Color(64, 61, 61));
+        deleteMovie.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        deleteMovie.setForeground(new java.awt.Color(255, 255, 255));
+        deleteMovie.setText("Delete Movie");
+        deleteMovie.setBorder(null);
+        deleteMovie.setBorderPainted(false);
+        deleteMovie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteMovie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deleteMovie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deleteMovie.setMargin(new java.awt.Insets(0, 6, 0, 6));
+        deleteMovie.setOpaque(true);
+        deleteMovie.setPreferredSize(new java.awt.Dimension(150, 40));
+        deleteMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMovieActionPerformed(evt);
+            }
+        });
+        deletemovie.add(deleteMovie);
 
         seeMovie.setBackground(new java.awt.Color(64, 61, 61));
         seeMovie.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -321,9 +345,9 @@ public class AdminPage extends javax.swing.JFrame {
                 seeMovieActionPerformed(evt);
             }
         });
-        movies.add(seeMovie);
+        deletemovie.add(seeMovie);
 
-        jMenuBar1.add(movies);
+        jMenuBar1.add(deletemovie);
 
         settings.setBackground(new java.awt.Color(37, 37, 37));
         settings.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -448,6 +472,11 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
          changePanel(addUser1);
     }//GEN-LAST:event_addUserActionPerformed
+
+    private void deleteMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMovieActionPerformed
+        // TODO add your handling code here:
+         changePanel(deleteMovie1);
+    }//GEN-LAST:event_deleteMovieActionPerformed
     public void changePanel(Component c){
            container.removeAll();
            container.repaint();
@@ -502,11 +531,13 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JMenu dashboard;
     private tg.trident.centurycinema.admin.Dashboard dashboard1;
+    private javax.swing.JMenuItem deleteMovie;
+    private tg.trident.centurycinema.admin.DeleteMovie deleteMovie1;
+    private javax.swing.JMenu deletemovie;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem logout;
     private javax.swing.JMenuItem mainPage;
-    private javax.swing.JMenu movies;
     private javax.swing.JMenuItem password;
     private javax.swing.JMenuItem profile;
     private javax.swing.JMenu rooms;

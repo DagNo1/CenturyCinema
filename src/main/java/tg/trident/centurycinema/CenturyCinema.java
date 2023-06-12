@@ -24,6 +24,6 @@ public class CenturyCinema {
         frame.setSize(800, 550);
         frame.setVisible(true);
 //        System.out.print(CenturyModel.getRoomIdForScreening(1));
-        
+         System.out.println( CenturyModel.getAllMovies());
     }
 }
