@@ -8,8 +8,12 @@ import Model.CenturyModel;
 import Model.Movie;
 import Model.Screening;
 import Model.TicketSeller;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import tg.trident.centurycinema.CenturyCinema;
 import tg.trident.centurycinema.ticket_seller.TicketSellerPage;
@@ -22,6 +26,15 @@ public class TicketSuccessPage extends javax.swing.JPanel {
     
     private int screeningId;
     private String selectedSeats;
+    public static String titlePrint;
+    public static String releaseDatePrint;
+    public static String durationPrint;
+    public static double pricePrint;
+    public static int room_numPrint;
+    public static String periodPrint;
+    public static String seatPrint;
+    public static String user_namePrint;
+    
 
     /**
      * Creates new form TicketSuccessPage
@@ -57,6 +70,14 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         this.seller.setText("Ticket Seller: " + ts.getUser_name());
         
                 System.out.print("4");
+                     titlePrint = movie.getTitle();
+     releaseDatePrint = movie.getRelease_date();
+     durationPrint = movie.getDuration();
+     pricePrint = screening.getPrice() * selectedSeats.size();
+     room_numPrint = screening.getRoom_number();
+     periodPrint = screening.getPeriod();
+     seatPrint = this.selectedSeats;
+     user_namePrint = ts.getUser_name();
         
     }
     public void clearData(){
@@ -68,6 +89,31 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         this.seller.setText("Ticket Seller: ");
         screeningId = -1;
         selectedSeats= "";
+    }
+    
+    public void setPrintableData(int screeningId, ArrayList<String> selectedSeats){
+        this.screeningId = screeningId;
+        this.selectedSeats = "";
+        
+        //make string for selected seats
+        for (String item : selectedSeats) {
+             this.selectedSeats  += item + ", ";
+        }
+        if(this.selectedSeats .length() > 1)
+            this.selectedSeats  = this.selectedSeats .substring(0, this.selectedSeats .length() - 2);
+        
+        Screening screening = CenturyModel.getScreeningById(screeningId);
+        Movie movie = CenturyModel.getMovieById(screening.getMovie_id());
+        TicketSeller ts = CenturyModel.getTicketSellerById(CenturyCinema.id);
+        
+     titlePrint = movie.getTitle();
+     releaseDatePrint = movie.getRelease_date();
+     durationPrint = movie.getDuration();
+     pricePrint = screening.getPrice() * selectedSeats.size();
+     room_numPrint = screening.getRoom_number();
+     periodPrint = screening.getPeriod();
+     seatPrint = this.selectedSeats;
+     user_namePrint = ts.getUser_name();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,6 +134,7 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         seats = new javax.swing.JLabel();
         screening = new javax.swing.JLabel();
         room = new javax.swing.JLabel();
+        Print = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,6 +188,15 @@ public class TicketSuccessPage extends javax.swing.JPanel {
         room.setForeground(new java.awt.Color(255, 255, 255));
         room.setText("Room: ");
 
+        Print.setBackground(new java.awt.Color(207, 145, 18));
+        Print.setForeground(new java.awt.Color(255, 255, 255));
+        Print.setText("Print Ticket");
+        Print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,7 +208,9 @@ public class TicketSuccessPage extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2))
-                        .addGap(269, 269, 269))
+                        .addGap(146, 146, 146)
+                        .addComponent(Print)
+                        .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(movie, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,7 +225,9 @@ public class TicketSuccessPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Print))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -182,12 +242,24 @@ public class TicketSuccessPage extends javax.swing.JPanel {
                 .addComponent(prise, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(seller, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintActionPerformed
+        PrintToPdf p = new PrintToPdf();
+        try {
+            p.print(titlePrint, releaseDatePrint, durationPrint, pricePrint, room_numPrint, periodPrint, seatPrint, user_namePrint);
+            JOptionPane.showMessageDialog(this, "Ticket Successfully Generedated. Please check your PDF Folder");
+            // TODO add your handling code here:
+        } catch (IOException ex) {
+            Logger.getLogger(TicketSuccessPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_PrintActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Print;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;

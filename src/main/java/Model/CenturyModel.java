@@ -21,9 +21,9 @@ import java.util.logging.Logger;
  * @author mohammed
  */
 public class CenturyModel {
-    public static String database= "jdbc:postgresql://localhost:5432/century_cinema";
-    public static String databaseUser = "postgres";
-    public static String databasePassword = "ken&mata";
+    public static String database= "jdbc:mariadb://localhost:3306/century_cinema";
+    public static String databaseUser = "root";
+    public static String databasePassword = "Nebil1053";
     
     //Gets all the info about admin from Database
     public static Admin getAdmin() {
@@ -741,22 +741,22 @@ public static void updateAdminInfo(String full_name, String user_name) {
     public static void main(String[] args) {
         // Example usage of the create methods
 
-        // Create a new Ticket Seller
-//        CenturyModel.createTicketSeller("Jane Doe", "janedoe", "password123");
-//        // Create a new Room
-//        try {
-//            CenturyModel.createRoom(101, 100, 10, 10);
-//        } catch (CapacityException e) {
-//            System.out.println("CapacityException: The sum of rows and columns exceeds the capacity.");
-//        }
-//
-//        // Create a new Movie
-//        CenturyModel.createMovie("Movie Title", "Action", "Synopsis", "2023-06-11", 120, "English", "poster.jpg");
-//
-//        // Create a new Screening
-//        CenturyModel.createScreening(101, 1, "2023-06-13", "09:00 AM", 10.99);
-//
-//        // Create a new Ticket
+         //Create a new Ticket Seller
+        CenturyModel.createTicketSeller("Jane Doe", "janedoe", "password123");
+        // Create a new Room
+        try {
+            CenturyModel.createRoom(101, 100, 10, 10);
+        } catch (CapacityException e) {
+            System.out.println("CapacityException: The sum of rows and columns exceeds the capacity.");
+        }
+
+        // Create a new Movie
+        CenturyModel.createMovie("Movie Title", "Action", "Synopsis", "2023-06-11", 120, "English", "poster.jpg");
+
+        // Create a new Screening
+        CenturyModel.createScreening(101, 1, "2023-06-13", "09:00 AM", 10.99);
+
+        // Create a new Ticket
         CenturyModel.createReservation(1, 1, "A1");
 
     }

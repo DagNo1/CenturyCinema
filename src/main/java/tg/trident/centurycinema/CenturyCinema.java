@@ -19,7 +19,7 @@ public class CenturyCinema {
     public static int id = 1;// used to get current signed in user of any type
 
     public static void main(String[] args) {
-        JFrame frame = new AdminPage();
+        JFrame frame = new TicketSellerPage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 550);
         frame.setVisible(true);
