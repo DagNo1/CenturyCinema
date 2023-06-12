@@ -4,6 +4,11 @@
  */
 package tg.trident.centurycinema.admin;
 
+import Model.CapacityException;
+import Model.CenturyModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author abelcosmic
@@ -15,6 +20,7 @@ public class AddRooms extends javax.swing.JPanel {
      */
     public AddRooms() {
         initComponents();
+        success.setVisible(false);
     }
 
     /**
@@ -27,15 +33,16 @@ public class AddRooms extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        goldenButton1 = new tg.trident.centurycinema.buttons.GoldenButton();
-        redButton1 = new tg.trident.centurycinema.buttons.RedButton();
+        add = new tg.trident.centurycinema.buttons.GoldenButton();
+        cancel = new tg.trident.centurycinema.buttons.RedButton();
+        success = new javax.swing.JLabel();
+        roomNumber = new javax.swing.JTextField();
+        capacity = new javax.swing.JTextField();
+        numCOlumns = new javax.swing.JTextField();
+        numRows = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(37, 37, 37));
         setPreferredSize(new java.awt.Dimension(300, 32));
@@ -43,38 +50,38 @@ public class AddRooms extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("room_number");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setPreferredSize(new java.awt.Dimension(300, 32));
-
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setPreferredSize(new java.awt.Dimension(300, 32));
-
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("capacity");
-
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setPreferredSize(new java.awt.Dimension(300, 32));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("num_rows");
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(37, 37, 37));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setPreferredSize(new java.awt.Dimension(300, 32));
-
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("num_columns");
 
-        goldenButton1.setText("add");
+        add.setText("add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
 
-        redButton1.setText("cancel");
+        cancel.setText("cancel");
+
+        success.setForeground(new java.awt.Color(0, 255, 0));
+        success.setText("successfully created");
+
+        roomNumber.setBackground(new java.awt.Color(37, 37, 37));
+        roomNumber.setForeground(new java.awt.Color(255, 255, 255));
+
+        capacity.setBackground(new java.awt.Color(37, 37, 37));
+        capacity.setForeground(new java.awt.Color(255, 255, 255));
+
+        numCOlumns.setBackground(new java.awt.Color(37, 37, 37));
+        numCOlumns.setForeground(new java.awt.Color(255, 255, 255));
+
+        numRows.setBackground(new java.awt.Color(37, 37, 37));
+        numRows.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,63 +89,79 @@ public class AddRooms extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(redButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(success)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(goldenButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(164, 164, 164))
+                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numCOlumns, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numRows, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(156, 156, 156))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
+                .addGap(145, 145, 145)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(roomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(numRows, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numCOlumns, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(43, 43, 43)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(redButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(goldenButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(success))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        try {
+            // TODO add your handling code here:
+            int room_number = Integer.parseInt(roomNumber.getText());
+            int Capacity = Integer.parseInt(capacity.getText());
+            int num_rows = Integer.parseInt(numRows.getText());
+            int num_columns = Integer.parseInt(numCOlumns.getText());
+            CenturyModel.createRoom(room_number, Capacity, num_rows, num_columns);
+            success.setVisible(true);
+        } catch (CapacityException ex) {
+            Logger.getLogger(AddRooms.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_addActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private tg.trident.centurycinema.buttons.GoldenButton goldenButton1;
+    private tg.trident.centurycinema.buttons.GoldenButton add;
+    private tg.trident.centurycinema.buttons.RedButton cancel;
+    private javax.swing.JTextField capacity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private tg.trident.centurycinema.buttons.RedButton redButton1;
+    private javax.swing.JTextField numCOlumns;
+    private javax.swing.JTextField numRows;
+    private javax.swing.JTextField roomNumber;
+    private javax.swing.JLabel success;
     // End of variables declaration//GEN-END:variables
 }
